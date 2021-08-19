@@ -1,6 +1,7 @@
 # Auction
 
-401 mid project
+Auction website allows the user to buy or sell any product they want, the user can put products in both ; used products or new products like (cars,furniture,laptops,photos,split units AC,apartment etc..) to sell them by the website . The user who want to sell his product , should upload a photo for the product ,description,minimum bidding,minimum price,time, and method for payment),The user who wants to buy or bid  on any product must fill an agreement form to ensure they have money and follow the policies for the website .
+
 
 ## Team Members
 
