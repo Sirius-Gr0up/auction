@@ -9,6 +9,28 @@ body{
 :root{
     --main-color:#4731B7;
 }
+/*start navbar */
+.navbar-brand{
+    width: 15%;
+    color: #fff;
+    text-shadow: 1px 1px 2px #232323;
+    font-size: 1.8rem;
+    font-weight: bolder;
+}
+.navbar-brand span{
+    color: #fff !important;
+}
+.nav-w{
+    width: 15%;
+}
+.style-nav .nav-link{
+    font-size: 1.5rem;
+    font-weight: bolder;
+    color: #fff !important;
+    padding-left: .8rem;
+    padding-right: .8rem;
+}
+/*end navabr */
 .main-img{
     position: relative;
     width: 100%;

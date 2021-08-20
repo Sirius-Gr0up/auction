@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"  xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--start navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-nav fixed-top style-nav" th:fragment="navbar" >
+  <div class="container">
+    <a class="navbar-brand" href="#"><span>i</span>Bid</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+      <ul class="navbar-nav m-auto mb-2 mb-lg-0 w-75 d-flex justify-content-center">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/aboutus">AboutUs</a>
+        </li>
+
+      </ul>
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0 nav-w">
+        <li class="nav-item me-1" sec:authorize = "!isAuthenticated()">
+          <form action="/signup" method="get">
+            <input type="submit" value="signup" class="btn  btn-outline-info">
+          </form>
+        </li>
+        <li class="nav-item" sec:authorize = "!isAuthenticated()">
+          <form action="/login" method="get">
+            <input type="submit" value="login" class="btn  btn-outline-info">
+          </form>
+        </li>
+
+        <li class="nav-item user-img dropdown" sec:authorize ="isAuthenticated()">
+          <a  class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <img  th:src="@{/img/avatar.png}"  th:alt="avatar" class="nav-img"/>
+            <a class="nav-link" href="/profile" sec:authentication="name"></a>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+            <li><a class="dropdown-item" th:href="@{/perform_logout}" th:text="logout" >
+<!--              <form action="/perform_logout" method="post">-->
+<!--                <input type="submit" value="logout" >-->
+<!--              </form>-->
+            </a>
+            </li>
+          </ul>
+
+        </li>
+      </ul>
+
+    </div>
+  </div>
+</nav>
+<!--end navbar-->
+</body>
+</html>

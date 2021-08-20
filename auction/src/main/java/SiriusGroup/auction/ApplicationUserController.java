@@ -50,9 +50,9 @@ public class ApplicationUserController {
         ApplicationUser newUser = new ApplicationUser(username,bCryptPasswordEncoder.encode(password),firstName,lastName,dateOfBirth,bio,imageUrl);
         applicationUserRepository.save(newUser);
         //Ensure that user registration also logs users into your app automatically.
-        Authentication authentication = new UsernamePasswordAuthenticationToken(newUser, null, new ArrayList<>());
-        SecurityContextHolder.getContext().setAuthentication(authentication);
-        return new RedirectView("/");
+//        Authentication authentication = new UsernamePasswordAuthenticationToken(newUser, null, new ArrayList<>());
+//        SecurityContextHolder.getContext().setAuthentication(authentication);
+        return new RedirectView("/login");
     }
 
 
