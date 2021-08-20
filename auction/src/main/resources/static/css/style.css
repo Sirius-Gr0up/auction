@@ -13,7 +13,7 @@ body{
     position: relative;
     width: 100%;
     height: 110vh;
-    background-image: url("7.jpg");
+    background-image: url("/img/7.jpg");
     background-size: cover;
     background-position: center;
     padding: 10vh 0;
@@ -73,7 +73,7 @@ body{
     width: 100%;
     height: 100vh;
     position: relative;
-    background-image: url("3.png");
+    background-image: url("/img/3.png");
     background-size: cover;
     background-position: center;
     padding: 15vh 0;
@@ -83,7 +83,7 @@ body{
     width: 100%;
     height: 100%;
     position: relative;
-    background-image: url("4.png");
+    background-image: url("/img/4.png");
     background-size: cover;
     background-position: center;
     padding: 15vh 0;
