@@ -6,9 +6,18 @@ body{
 *{
     box-sizing: border-box;
 }
-:root{
-    --main-color:#4731B7;
+:root {
+    --main-color: #6448F5;
+    --y-color:#FFC107;
 }
+.my-btn{
+background-color: #fff !important;
+    color: var(--main-color);
+    border-color: var(--main-color);
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    font-size: 1.15rem;
+}
+
 /*start navbar */
 .navbar-brand{
     width: 15%;
@@ -23,19 +32,63 @@ body{
 .nav-w{
     width: 15%;
 }
+.style-nav{
+    transition: all .8s ease-in-out;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+}
 .style-nav .nav-link{
     font-size: 1.5rem;
     font-weight: bolder;
     color: #fff !important;
     padding-left: .8rem;
     padding-right: .8rem;
+    transition: all .5s ease-in-out;
+}
+.style-nav .nav-link:hover{
+    color: var(--y-color) !important;
+}
+.nav-img{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    cursor: pointer;
+}
+.scroll-nav{
+    transition: all .8s ease-in-out;
+    background-color: var(--main-color);
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+}
+.scroll-nav .nav-link{
+    font-size: 1.3rem;
+}
+.style-nav .dropdown-item{
+    color: var(--main-color);
+    font-weight: bolder;
+    padding: .5rem;
+}
+.style-nav .dropdown-item:hover{
+    transition: all .5s ease-in-out;
+    color: #fff;
+    background-color: var(--main-color);
+}
+.style-nav .dropdown-item i{
+    padding: 0 10px;
+    font-size: 1.3rem;
+}
+.style-nav .dropdown-menu{
+   min-width: 13rem;
 }
 /*end navabr */
+/*start home page */
 .main-img{
     position: relative;
     width: 100%;
     height: 110vh;
-    background-image: url("/img/7.jpg");
+    background-image: url("/img/1.png");
     background-size: cover;
     background-position: center;
     padding: 10vh 0;
@@ -90,7 +143,20 @@ body{
 }
 .header-text p{
     color: rgb(187, 185, 185);
+    text-align: center;
 }
+.register-btn{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.register-btn .my-btn{
+    width: 100%;
+    font-weight: bolder;
+    font-size: 1.5rem;
+}
+/*end home page */
 .login-page{
     width: 100%;
     height: 100vh;
@@ -183,3 +249,99 @@ input:-webkit-autofill {
     flex-direction: column;
     color: #fff;
 }
+/*start secton 2 */
+.section-2{
+    width: 100%;
+    height: 100%;
+    padding: 22vh 0 ;
+}
+.section2-header{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.section2-header h1{
+    color: var(--main-color);
+    text-shadow: 2px 1px 8px #232323;
+    text-align: center;
+    font-family: sans-serif;
+    font-size: 4rem;
+    font-weight: 900;
+}
+.all-works{
+    width: 100%;
+    height: 100%;
+    padding :13vh 0;
+
+}
+.img-box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+/*end section 2*/
+/*start footer*/
+footer{
+    width: 100%;
+    height: 100%;
+    background-image: url("/img/10.jpg");
+    background-size: cover;
+    background-position: center;
+    padding-top: 10vh;
+    color: #fff;
+}
+.copyright{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: whitesmoke;
+    flex-direction: column;
+}
+copyright p i{
+    color: var(--y-color) !important;
+}
+footer .nav-link{
+    color: #fff;
+    transition: all .5s ease-in-out;
+}
+footer .nav-link:hover{
+    transition: all .5s ease-in-out;
+    color:var(--y-color) ;
+}
+footer .nav-link i{
+    padding: 0 10px;
+    color: var(--y-color);
+    font-size: 1.5rem;
+}
+.social {
+    width: 100%;
+    height: 100%;
+}
+.social a{
+    text-decoration: none;
+}
+.social a i{
+   background-color: var(--y-color);
+    color: var(--main-color);
+    padding :1rem;
+    border-radius: 1rem;
+    transition: all .8s ease-in-out;
+    font-size: 1.7rem ;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+
+}
+.social a i:hover{
+    background-color: transparent;
+    color: var(--y-color);
+}
+.right-reserved{
+    font-size: .8rem;
+}
+/*end footer*/

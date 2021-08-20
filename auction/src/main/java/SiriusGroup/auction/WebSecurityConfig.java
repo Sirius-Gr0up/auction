@@ -30,6 +30,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.cors().disable().csrf().disable()
                 .authorizeRequests().antMatchers( "/login", "/signup","/").permitAll()
                 .antMatchers("/**").permitAll()
-                .anyRequest().authenticated().and().formLogin().loginPage("/login").loginProcessingUrl("/perform_login").defaultSuccessUrl("/", true).failureUrl("/error").and().logout().logoutUrl("/perform_logout").deleteCookies("JSESSIONID");
+                .anyRequest().authenticated().and().formLogin()
+                .loginPage("/login").loginProcessingUrl("/perform_login")
+                .defaultSuccessUrl("/", true).failureUrl("/error").and().logout().logoutUrl("/perform_logout").deleteCookies("JSESSIONID");
     }
 }

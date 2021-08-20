@@ -13,19 +13,19 @@ public class ApplicationUser implements UserDetails {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    long id;
+    private long id;
     @Column(unique = true)
-    String username;
-    String password;
-    String firstName;
-    String lastName;
-    Integer dateOfBirth;
-    String bio;
-    String imgUrl;
+    private String username;
+    private String password;
+    private String firstName;
+    private String lastName;
+    private String dateOfBirth;
+    private String bio;
+    private String imgUrl;
 
 
 
-    public ApplicationUser(String username, String password, String firstName, String lastName, Integer dateOfBirth, String bio, String imgUrl) {
+    public ApplicationUser(String username, String password, String firstName, String lastName, String dateOfBirth, String bio, String imgUrl) {
         this.username = username;
         this.password = password;
         this.firstName = firstName;
@@ -54,7 +54,7 @@ public class ApplicationUser implements UserDetails {
         this.lastName = lastName;
     }
 
-    public void setDateOfBirth(Integer dateOfBirth) {
+    public void setDateOfBirth(String dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 
@@ -78,7 +78,7 @@ public class ApplicationUser implements UserDetails {
         return lastName;
     }
 
-    public Integer getDateOfBirth() {
+    public String getDateOfBirth() {
         return dateOfBirth;
     }
 
