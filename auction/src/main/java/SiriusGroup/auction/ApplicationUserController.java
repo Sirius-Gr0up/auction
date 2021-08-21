@@ -34,10 +34,21 @@ public class ApplicationUserController {
     BCryptPasswordEncoder bCryptPasswordEncoder;
 
 
-//    @GetMapping("/")
-//    public String getHome(){
-//        return "index.html";
-//    }
+
+    @GetMapping("/")
+    public String getHome(Principal p, Model model){
+        try{
+
+
+            model.addAttribute("UserInfo",applicationUserRepository.findById(applicationUserRepository.findByUsername(p.getName()).getId()).get());
+            System.out.println(applicationUserRepository.findByUsername(p.getName()).getImgUrl());
+        }catch (NullPointerException e){
+
+            model.addAttribute("userInfo","");
+
+        }
+        return "index.html";
+    }
 
     @GetMapping("/signup")
     public String getSignUpPage(){
@@ -63,9 +74,11 @@ public class ApplicationUserController {
 
 
 
-        String uploadDir = "user-photos" ;
+        String uploadDir = "/Users/dawoodabuzahra/auction/auction/src/main/resources/static/img" ;
 
        String url= FileUploadUtil.saveFile(uploadDir, fileName, imageUrl);
+
+
         ApplicationUser newUser = new ApplicationUser(username,bCryptPasswordEncoder.encode(password),firstName,lastName,dateOfBirth,bio,url);
         applicationUserRepository.save(newUser);
 
@@ -73,25 +86,25 @@ public class ApplicationUserController {
         SecurityContextHolder.getContext().setAuthentication(authentication);
         return new RedirectView("/");
     }
- @GetMapping("/profile")
-    public String getProfile(){
-        return "profile.html";
- }
+// @GetMapping("/profile")
+//    public String getProfile(){
+//        return "profile.html";
+// }
 
-    @GetMapping("/")
-    public String getUserProfile(Principal p, Model model) {
-        try {
+
+    @GetMapping("/profile")
+    public String getUserProfile(Principal p, Model model){
+        try{
             // for the header
-            model.addAttribute("userInfoe", p.getName());
+
             // for the body
-            model.addAttribute("UserInfo", applicationUserRepository.findByUsername(p.getName()));
-        } catch (NullPointerException e) {
-            model.addAttribute("userInfoe", "");
-            model.addAttribute("UserInfo", new ApplicationUser());
+            model.addAttribute("UserInfo",applicationUserRepository.findById(applicationUserRepository.findByUsername(p.getName()).getId()).get());
+            System.out.println(applicationUserRepository.findById(applicationUserRepository.findByUsername(p.getName()).getId()).get());
+        }catch (NullPointerException e){
+            model.addAttribute("userInfoe","");
+            model.addAttribute("UserInfo",new ApplicationUser());
         }
-        return "index.html";
-
-
+        return "profile.html";
     }
 
 }
