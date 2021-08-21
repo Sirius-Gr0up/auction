@@ -86,10 +86,6 @@ public class ApplicationUserController {
         SecurityContextHolder.getContext().setAuthentication(authentication);
         return new RedirectView("/");
     }
-// @GetMapping("/profile")
-//    public String getProfile(){
-//        return "profile.html";
-// }
 
 
     @GetMapping("/profile")
