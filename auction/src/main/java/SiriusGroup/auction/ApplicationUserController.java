@@ -75,8 +75,8 @@ public class ApplicationUserController {
 
 
 
-//        String uploadDir = "/Users/dawoodabuzahra/auction/auction/src/main/resources/static/img" ;
-        String uploadDir = "/Users/user/LTUC/auction/auction/src/main/resources/static/img" ;
+        String uploadDir = "/Users/dawoodabuzahra/auction/auction/src/main/resources/static/img" ;
+//        String uploadDir = "/Users/user/LTUC/auction/auction/src/main/resources/static/img" ;
 
        String url= FileUploadUtil.saveFile(uploadDir, fileName, imageUrl);
 
@@ -109,8 +109,10 @@ public class ApplicationUserController {
             return "profile.html";
     }
 
-    @GetMapping("/product")
-    public String getProduct(){
+    @GetMapping("/product" )
+    public String getProduct(Principal p, Model model){
+        model.addAttribute("UserInfo",applicationUserRepository.findById(applicationUserRepository.findByUsername(p.getName()).getId()).get());
+
         return "product.html";
     }
 
