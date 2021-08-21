@@ -2,6 +2,7 @@ package SiriusGroup.auction;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -74,7 +75,8 @@ public class ApplicationUserController {
 
 
 
-        String uploadDir = "/Users/dawoodabuzahra/auction/auction/src/main/resources/static/img" ;
+//        String uploadDir = "/Users/dawoodabuzahra/auction/auction/src/main/resources/static/img" ;
+        String uploadDir = "/Users/user/LTUC/auction/auction/src/main/resources/static/img" ;
 
        String url= FileUploadUtil.saveFile(uploadDir, fileName, imageUrl);
 
@@ -86,10 +88,6 @@ public class ApplicationUserController {
         SecurityContextHolder.getContext().setAuthentication(authentication);
         return new RedirectView("/");
     }
-// @GetMapping("/profile")
-//    public String getProfile(){
-//        return "profile.html";
-// }
 
 
     @GetMapping("/profile")
@@ -104,7 +102,16 @@ public class ApplicationUserController {
             model.addAttribute("userInfoe","");
             model.addAttribute("UserInfo",new ApplicationUser());
         }
-        return "profile.html";
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if(authentication == null || AnonymousAuthenticationToken.class.isAssignableFrom(authentication.getClass()))
+            return "login.html";
+        else
+            return "profile.html";
+    }
+
+    @GetMapping("/product")
+    public String getProduct(){
+        return "product.html";
     }
 
 }
