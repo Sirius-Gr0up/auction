@@ -163,7 +163,17 @@ public class ProductController {
     ////////////////////////////////////////
 
     //khalil
+    @GetMapping("/myProducts")
+    public String getMyProducts(Model m,Principal p){
+        m.addAttribute("products",applicationUserRepository.findByUsername(p.getName()).getProducts());
+        return "myProducts.html";
+    }
 
+    @GetMapping("/myProducts/{id}")
+    public String deleteProduct(@PathVariable Long id) {
+        productsRepository.deleteById(id);
+        return "myProducts.html";
+    }
 
 
 

@@ -125,7 +125,8 @@ public class ApplicationUserController {
 //    }
 
     @PostMapping("/editUser")
-    public RedirectView editUser(Principal p,@RequestParam(value="username") String username, @RequestParam(value="firstName") String firstName, @RequestParam(value="lastName") String lastName, @RequestParam(value="dateOfBirth") String dateOfBirth, @RequestParam(value="bio") String bio, @RequestParam(required=true,value="imageUrl") MultipartFile imageUrl) throws IOException{
+    public RedirectView editUser(Principal p,@RequestParam(value="username") String username, @RequestParam(value="firstName") String firstName, @RequestParam(value="lastName") String lastName, @RequestParam(value="dateOfBirth") String dateOfBirth, @RequestParam(value="bio") String bio, @RequestParam(required=true,value="imageUrl") MultipartFile imageUrl) {
+        String url=null;
 
         String fileName = StringUtils.cleanPath(imageUrl.getOriginalFilename());
 
@@ -134,7 +135,11 @@ public class ApplicationUserController {
 //        String uploadDir = "/Users/Khalil/ASAC/401mid/auction/auction/src/main/resources/static/img" ;
 //        String uploadDir = "/Users/user/LTUC/auction/auction/src/main/resources/static/img" ;
 
-        String url= FileUploadUtil.saveFile(uploadDir, fileName, imageUrl);
+        try {
+            url= FileUploadUtil.saveFile(uploadDir, fileName, imageUrl);
+        } catch (IOException e) {
+            url=applicationUserRepository.findByUsername(p.getName()).getImgUrl();
+        }
 
         applicationUserRepository.findByUsername(p.getName()).setFirstName(firstName);
         applicationUserRepository.findByUsername(p.getName()).setLastName(lastName);
