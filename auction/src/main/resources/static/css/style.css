@@ -542,3 +542,27 @@ footer .nav-link i{
     height: 250px;
 }
 /*end product page */
+/*start my products page*/
+.icon-remove{
+    /*position: absolute;*/
+    /*bottom: 0px;*/
+    /*left: 0;*/
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    align-content: center;
+    text-align: center;
+}
+.icon-remove a{
+    text-decoration: none;
+}
+.icon-remove p{
+    margin: 0;
+}
+.icon-remove i {
+    color: #aaa;
+    font-size: 1.2rem;
+    border-radius: 50%;
+}
+/*end my products page*/

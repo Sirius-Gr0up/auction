@@ -165,14 +165,16 @@ public class ProductController {
     //khalil
     @GetMapping("/myProducts")
     public String getMyProducts(Model m,Principal p){
+        m.addAttribute("UserInfo", applicationUserRepository.findById(applicationUserRepository.findByUsername(p.getName()).getId()).get());
         m.addAttribute("products",applicationUserRepository.findByUsername(p.getName()).getProducts());
         return "myProducts.html";
     }
 
     @GetMapping("/myProducts/{id}")
-    public String deleteProduct(@PathVariable Long id) {
-        productsRepository.deleteById(id);
-        return "myProducts.html";
+    public RedirectView deleteProduct(@PathVariable Long id) {
+        Products p1=productsRepository.findById(id).get();
+        productsRepository.deleteById(p1.getId());
+        return new RedirectView("/myProducts");
     }
 
 
