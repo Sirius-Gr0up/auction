@@ -28,8 +28,8 @@
             <p th:text="${UserInfo.bio}"></p>
           </div>
           <div class="left-side">
-            <h1>Add new product </h1>
-            <div class="addedProduct" >  <a href="#" data-toggle="modal" data-target="#exampleModal1" ><i class="fas fa-plus"></i> </a> </div>
+<!--            <h1>Add new product </h1>-->
+            <div class="addedProduct" >  <a href="#" data-toggle="modal" data-target="#exampleModal1" ><h1>Add new product </h1><i class="fas fa-plus"></i> </a> </div>
 
           </div>
         </div>
@@ -142,15 +142,36 @@
         </button>
       </div>
       <div class="modal-body">
+
         <form th:action="@{/product/{id}(id=${UserInfo.getId()})}"  method="post">
 <!--          <p><input type='hidden' name='userId' th:value="${userId}"></p>-->
+          <div class="mb-3">
+            <label for="productName" class="form-label">Product Name</label>
+            <input type="text" name="productName" class="form-control" id="productName" aria-describedby="emailHelp">
+          </div>
 
-          <h1>product Name <input type="text" field="*{productName}"  name="productName" /></h1>
-          <p> product Image<input type="productImageUrl" field="*{productImageUrl}" name="productImageUrl" /></p>
-          <p> time <input type="date"  field="*{time}" name="time" /></p>
-          <p> minPrice(in JOD)<input type="text" field="*{minPrice}" name="minPrice" /></p>
+          <div class="mb-3">
+            <label for="productImageUrl" class="form-label">Product Image</label>
+            <input type="text" name="productImageUrl" class="form-control" id="productImageUrl" aria-describedby="emailHelp">
+          </div>
 
-          <input type="submit" value="submit">
+          <div class="mb-3">
+            <label for="time" class="form-label">End Time</label>
+            <input type="date" th:min="${UserInfo.getNow()}" name="time" class="form-control" id="time" aria-describedby="emailHelp">
+          </div>
+
+
+          <div class="mb-3">
+            <label for="minPrice" class="form-label">Minimum Price</label>
+            <input type="text" name="minPrice" class="form-control" id="minPrice" aria-describedby="emailHelp">
+          </div>
+
+<!--          <p>product Name <input type="text" field="*{productName}"  name="productName" /></p>-->
+<!--          <p> product Image<input type="productImageUrl" field="*{productImageUrl}" name="productImageUrl" /></p>-->
+<!--          <p> time <input type="date"  field="*{time}" name="time" /></p>-->
+<!--          <p> minPrice(in JOD)<input type="text" field="*{minPrice}" name="minPrice" /></p>-->
+
+          <input class="btn pink-btn" type="submit" value="submit">
         </form>
       </div>
 

@@ -6,7 +6,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
 import javax.xml.crypto.Data;
+import java.text.SimpleDateFormat;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -134,5 +136,10 @@ public class ApplicationUser implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+    public String getNow(){
+        SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd");
+        Date date = new Date(System.currentTimeMillis());
+        return formatter.format(date);
     }
 }

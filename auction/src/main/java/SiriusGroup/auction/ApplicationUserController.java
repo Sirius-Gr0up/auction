@@ -76,13 +76,13 @@ public class ApplicationUserController {
         System.out.println(fileName);
 
 
-//        String uploadDir = "Users/S4C/auction/auction/src/main/resources/static/img";
+        String uploadDir = "Users/S4C/auction/auction/src/main/resources/static/img";
 
 
 //         String uploadDir = "/Users/Khalil/ASAC/401mid/auction/auction/src/main/resources/static/img" ;
 
 
-        String uploadDir = "/Users/dawoodabuzahra/auction/auction/src/main/resources/static/img" ;
+//        String uploadDir = "/Users/dawoodabuzahra/auction/auction/src/main/resources/static/img" ;
 //        String uploadDir = "/Users/user/LTUC/auction/auction/src/main/resources/static/img" ;
 
         String url = FileUploadUtil.saveFile(uploadDir, fileName, imageUrl);
