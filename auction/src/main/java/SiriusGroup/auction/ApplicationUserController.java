@@ -71,6 +71,9 @@ public class ApplicationUserController {
 
         String uploadDir = "Users/S4C/auction/auction/src/main/resources/static/img";
 
+
+//         String uploadDir = "/Users/Khalil/ASAC/401mid/auction/auction/src/main/resources/static/img" ;
+
 //        String uploadDir = "/Users/dawoodabuzahra/auction/auction/src/main/resources/static/img" ;
 //        String uploadDir = "/Users/user/LTUC/auction/auction/src/main/resources/static/img" ;
 
@@ -105,4 +108,37 @@ public class ApplicationUserController {
             return "profile.html";
     }
 
+
+    @GetMapping("/product" )
+    public String getProduct(Principal p, Model model){
+        model.addAttribute("UserInfo",applicationUserRepository.findById(applicationUserRepository.findByUsername(p.getName()).getId()).get());
+
+        return "product.html";
+    }
+
+    @PostMapping("/editUser")
+    public RedirectView editUser(Principal p,@RequestParam(value="username") String username, @RequestParam(value="firstName") String firstName, @RequestParam(value="lastName") String lastName, @RequestParam(value="dateOfBirth") String dateOfBirth, @RequestParam(value="bio") String bio, @RequestParam(required=true,value="imageUrl") MultipartFile imageUrl) throws IOException{
+
+        String fileName = StringUtils.cleanPath(imageUrl.getOriginalFilename());
+
+
+//        String uploadDir = "/Users/dawoodabuzahra/auction/auction/src/main/resources/static/img" ;
+        String uploadDir = "/Users/Khalil/ASAC/401mid/auction/auction/src/main/resources/static/img" ;
+//        String uploadDir = "/Users/user/LTUC/auction/auction/src/main/resources/static/img" ;
+
+        String url= FileUploadUtil.saveFile(uploadDir, fileName, imageUrl);
+
+        applicationUserRepository.findByUsername(p.getName()).setFirstName(firstName);
+        applicationUserRepository.findByUsername(p.getName()).setLastName(lastName);
+        applicationUserRepository.findByUsername(p.getName()).setDateOfBirth(dateOfBirth);
+        applicationUserRepository.findByUsername(p.getName()).setBio(bio);
+        applicationUserRepository.findByUsername(p.getName()).setImgUrl(url);
+        applicationUserRepository.save(applicationUserRepository.findByUsername(p.getName()));
+
+        return new RedirectView("/profile");
+
+    }
+    }
+
 }
+
