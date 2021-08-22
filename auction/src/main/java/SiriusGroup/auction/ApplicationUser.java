@@ -14,7 +14,7 @@ public class ApplicationUser implements UserDetails {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private long id;
+    private Long id;
     @Column(unique = true)
     private String username;
     private String password;
@@ -24,7 +24,8 @@ public class ApplicationUser implements UserDetails {
     private String bio;
     private String imgUrl;
 
-
+    @OneToMany(mappedBy = "owner")
+    List<Products> products;
 
     public ApplicationUser(String username, String password, String firstName, String lastName, String dateOfBirth, String bio, String imgUrl) {
         this.username = username;
@@ -38,6 +39,14 @@ public class ApplicationUser implements UserDetails {
     }
 
     public ApplicationUser(){}
+
+    public List<Products> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<Products> products) {
+        this.products = products;
+    }
 
     public void setUsername(String username){
         this.username = username;
@@ -67,7 +76,7 @@ public class ApplicationUser implements UserDetails {
         this.imgUrl = imgUrl;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 

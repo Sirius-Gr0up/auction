@@ -27,6 +27,11 @@
             <h2 th:text="${UserInfo.username}"></h2>
             <p th:text="${UserInfo.bio}"></p>
           </div>
+          <div class="left-side">
+            <h1>Add new product </h1>
+            <div class="addedProduct" >  <a href="#" data-toggle="modal" data-target="#exampleModal1" ><i class="fas fa-plus"></i> </a> </div>
+
+          </div>
         </div>
         <div class="col-8 h-100">
           <div class="right-side">
@@ -90,28 +95,28 @@
           </div>
           <div class="mb-3">
             <label for="firstName" class="form-label">firstName</label>
-            <input type="text" name="firstName" class="form-control" id="firstName" aria-describedby="emailHelp">
+            <input type="text" name="firstName" class="form-control"  th:value="${UserInfo.firstName}" id="firstName" aria-describedby="emailHelp">
           </div>
 
           <div class="mb-3">
             <label for="lastName" class="form-label">lastName</label>
-            <input type="text" name="lastName" class="form-control" id="lastName" aria-describedby="emailHelp">
+            <input type="text" name="lastName" class="form-control" th:value="${UserInfo.lastName}" id="lastName" aria-describedby="emailHelp">
           </div>
 
           <div class="mb-3">
             <label for="dateOfBirth" class="form-label">dateOfBirth</label>
-            <input type="date" name="dateOfBirth" class="form-control" id="dateOfBirth" aria-describedby="emailHelp">
+            <input type="date" name="dateOfBirth" class="form-control" id="dateOfBirth" th:value="${UserInfo.dateOfBirth}" aria-describedby="emailHelp">
           </div>
 
           <div class="mb-3">
             <label for="bio" class="form-label">bio</label>
-            <input type="text" name="bio" class="form-control" id="bio" aria-describedby="emailHelp">
+            <input type="text" name="bio" class="form-control" id="bio" th:value="${UserInfo.bio}" aria-describedby="emailHelp">
           </div>
 
 
           <div class="mb-3">
             <label for="imageUrl" class="form-label">imageUrl</label>
-            <input type="file" name="imageUrl" class="form-control" id="imageUrl" aria-describedby="emailHelp">
+            <input type="file" name="imageUrl" class="form-control" id="imageUrl" th:value="${UserInfo.imgUrl}" aria-describedby="emailHelp">
           </div>
 
 
@@ -126,6 +131,33 @@
   </div>
 </div>
 <!--    end modal-->
+<!--Start product Modal -->
+<div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Edit your info </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form th:action="@{/product/{id}(id=${UserInfo.getId()})}"  method="post">
+<!--          <p><input type='hidden' name='userId' th:value="${userId}"></p>-->
+
+          <h1>product Name <input type="text" field="*{productName}"  name="productName" /></h1>
+          <p> product Image<input type="productImageUrl" field="*{productImageUrl}" name="productImageUrl" /></p>
+          <p> time <input type="date"  field="*{time}" name="time" /></p>
+          <p> minPrice(in JOD)<input type="text" field="*{minPrice}" name="minPrice" /></p>
+
+          <input type="submit" value="submit">
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
+<!--    end product modal-->
 <!-- start footer -->
 <nav th:replace="fragments/navbar :: footer"></nav>
 <!-- end footer -->

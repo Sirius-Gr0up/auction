@@ -518,4 +518,7 @@ footer .nav-link i{
     justify-content: center;
     align-items: center;
 }
+.product .card-img-top{
+    height: 250px;
+}
 /*end product page */
