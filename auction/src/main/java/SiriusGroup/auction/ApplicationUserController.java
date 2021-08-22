@@ -87,12 +87,12 @@ public class ApplicationUserController {
 
 
     @GetMapping("/profile")
-    public String getUserProfile(Principal p, Model model) {
-        try {
-            // for the header
 
-            // for the body
-            model.addAttribute("UserInfo", applicationUserRepository.findById(applicationUserRepository.findByUsername(p.getName()).getId()).get());
+    public String getUserProfile(Principal p, Model model){
+        try{
+
+            model.addAttribute("UserInfo",applicationUserRepository.findById(applicationUserRepository.findByUsername(p.getName()).getId()).get());
+
             System.out.println(applicationUserRepository.findById(applicationUserRepository.findByUsername(p.getName()).getId()).get());
         } catch (NullPointerException e) {
             model.addAttribute("userInfoe", "");
