@@ -72,6 +72,10 @@ public class ApplicationUserController {
 
         System.out.println(fileName);
 
+
+        System.out.println(fileName);
+
+
         String uploadDir = "Users/S4C/auction/auction/src/main/resources/static/img";
 
 
@@ -144,5 +148,5 @@ public class ApplicationUserController {
     }
     }
 
-}
+
 
