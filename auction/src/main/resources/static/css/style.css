@@ -456,7 +456,27 @@ footer .nav-link i{
 .modal-header{
     padding: 4vh 4rem;
 }
+.addedProduct a{
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border: 1px solid #aaa;
+    padding: 2rem;
+    transition: all 0.5s ease-in-out;
+}
+.addedProduct a i {
+    font-size:2rem ;
+    padding-top: 1rem;
+    color: var(--y-color);
 
+}
+.addedProduct a:hover{
+    background: rgba(100, 72, 245, 0.18);
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
+
+}
 /*end profile*/
 /*start products page*/
 .product .card{
