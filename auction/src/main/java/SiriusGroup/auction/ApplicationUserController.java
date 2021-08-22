@@ -73,7 +73,7 @@ public class ApplicationUserController {
         String fileName = StringUtils.cleanPath(imageUrl.getOriginalFilename());
 
 
-
+        System.out.println(fileName);
 
         String uploadDir = "/Users/dawoodabuzahra/auction/auction/src/main/resources/static/img" ;
 //        String uploadDir = "/Users/user/LTUC/auction/auction/src/main/resources/static/img" ;
