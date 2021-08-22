@@ -11,10 +11,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.view.RedirectView;
 
@@ -74,8 +71,8 @@ public class ApplicationUserController {
 
 
 
-
-        String uploadDir = "/Users/dawoodabuzahra/auction/auction/src/main/resources/static/img" ;
+        String uploadDir = "/Users/Khalil/ASAC/401mid/auction/auction/src/main/resources/static/img" ;
+//        String uploadDir = "/Users/dawoodabuzahra/auction/auction/src/main/resources/static/img" ;
 //        String uploadDir = "/Users/user/LTUC/auction/auction/src/main/resources/static/img" ;
 
        String url= FileUploadUtil.saveFile(uploadDir, fileName, imageUrl);
@@ -114,4 +111,43 @@ public class ApplicationUserController {
         return "product.html";
     }
 
-}
+    @PostMapping("/editUser")
+    public RedirectView editUser(Principal p,@RequestParam(value="username") String username, @RequestParam(value="firstName") String firstName, @RequestParam(value="lastName") String lastName, @RequestParam(value="dateOfBirth") String dateOfBirth, @RequestParam(value="bio") String bio, @RequestParam(required=true,value="imageUrl") MultipartFile imageUrl) throws IOException{
+
+        String fileName = StringUtils.cleanPath(imageUrl.getOriginalFilename());
+
+
+//        String uploadDir = "/Users/dawoodabuzahra/auction/auction/src/main/resources/static/img" ;
+        String uploadDir = "/Users/Khalil/ASAC/401mid/auction/auction/src/main/resources/static/img" ;
+//        String uploadDir = "/Users/user/LTUC/auction/auction/src/main/resources/static/img" ;
+
+        String url= FileUploadUtil.saveFile(uploadDir, fileName, imageUrl);
+
+        applicationUserRepository.findByUsername(p.getName()).setFirstName(firstName);
+        applicationUserRepository.findByUsername(p.getName()).setLastName(lastName);
+        applicationUserRepository.findByUsername(p.getName()).setDateOfBirth(dateOfBirth);
+        applicationUserRepository.findByUsername(p.getName()).setBio(bio);
+        applicationUserRepository.findByUsername(p.getName()).setImgUrl(url);
+        applicationUserRepository.save(applicationUserRepository.findByUsername(p.getName()));
+
+        return new RedirectView("/profile");
+
+    }
+    }
+//        ApplicationUser User=applicationUserRepository.findByUsername(p.getName());
+
+
+
+
+//        m.addAttribute("UserInfo",applicationUserRepository.findByUsername(p.getName()));
+
+////
+//        System.out.println(applicationUserRepository.findByUsername(email).getFirstName());
+
+
+
+
+//
+//public RedirectView editUser(Model m,Principal p,@RequestParam(value = "firstName")String firstName,
+//                             @RequestParam(value = "lastName")String lastName,@RequestParam(value = "dateOfBirth")String dateOfBirth,
+//                              @RequestParam(value = "bio")String bio,@RequestParam(value = "imageUrl")String imageUrl,@RequestParam(value = "username")String email){

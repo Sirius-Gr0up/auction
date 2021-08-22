@@ -90,28 +90,28 @@
           </div>
           <div class="mb-3">
             <label for="firstName" class="form-label">firstName</label>
-            <input type="text" name="firstName" class="form-control" id="firstName" aria-describedby="emailHelp">
+            <input type="text" name="firstName" class="form-control"  th:value="${UserInfo.firstName}" id="firstName" aria-describedby="emailHelp">
           </div>
 
           <div class="mb-3">
             <label for="lastName" class="form-label">lastName</label>
-            <input type="text" name="lastName" class="form-control" id="lastName" aria-describedby="emailHelp">
+            <input type="text" name="lastName" class="form-control" th:value="${UserInfo.lastName}" id="lastName" aria-describedby="emailHelp">
           </div>
 
           <div class="mb-3">
             <label for="dateOfBirth" class="form-label">dateOfBirth</label>
-            <input type="date" name="dateOfBirth" class="form-control" id="dateOfBirth" aria-describedby="emailHelp">
+            <input type="date" name="dateOfBirth" class="form-control" id="dateOfBirth" th:value="${UserInfo.dateOfBirth}" aria-describedby="emailHelp">
           </div>
 
           <div class="mb-3">
             <label for="bio" class="form-label">bio</label>
-            <input type="text" name="bio" class="form-control" id="bio" aria-describedby="emailHelp">
+            <input type="text" name="bio" class="form-control" id="bio" th:value="${UserInfo.bio}" aria-describedby="emailHelp">
           </div>
 
 
           <div class="mb-3">
             <label for="imageUrl" class="form-label">imageUrl</label>
-            <input type="file" name="imageUrl" class="form-control" id="imageUrl" aria-describedby="emailHelp">
+            <input type="file" name="imageUrl" class="form-control" id="imageUrl" th:value="${UserInfo.imgUrl}" aria-describedby="emailHelp">
           </div>
 
 
