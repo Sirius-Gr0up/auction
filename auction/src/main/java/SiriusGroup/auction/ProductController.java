@@ -3,12 +3,15 @@ package SiriusGroup.auction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.view.RedirectView;
 
+import java.io.IOException;
 import java.security.Principal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -48,17 +51,25 @@ public class ProductController {
     public RedirectView postProduct (
                                         @PathVariable Long id,
                                      @RequestParam String productName,
-                                     @RequestParam String productImageUrl,
+                                     @RequestParam MultipartFile productImageUrl,
                                      @RequestParam String time,
                                      @RequestParam int maxPrice,
                                      @RequestParam String dis,
-                                     @RequestParam int minPrice) throws ParseException {
+                                     @RequestParam int minPrice) throws ParseException, IOException {
+
+
+        String fileName = StringUtils.cleanPath(productImageUrl.getOriginalFilename());
+
+        String uploadDir = "/Users/dawoodabuzahra/401/auction/auction/src/main/resources/static/img" ;
+        String url = FileUploadUtil.saveFile(uploadDir, fileName, productImageUrl);
+
+
         System.out.println("id: "+id);
         System.out.println("time"+time);
         Date date1=new SimpleDateFormat("yyyy-MM-dd").parse(time);
         System.out.println("date1"+date1);
         ApplicationUser applicationUser = applicationUserRepository.findById(id).get();
-        Products products=new Products( dis, productName,productImageUrl,date1,minPrice, maxPrice,applicationUser);
+        Products products=new Products( dis, productName,url,date1,minPrice, maxPrice,applicationUser);
 //        ApplicationUser user = applicationUserRepository.findByUsername(principal.getName());
         productsRepository.save(products);
         return new RedirectView ("/product");

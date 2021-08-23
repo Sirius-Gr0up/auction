@@ -148,7 +148,8 @@
       </div>
       <div class="modal-body">
 
-        <form th:action="@{/product/{id}(id=${UserInfo.getId()})}"  method="post">
+        <form th:action="@{/product/{id}(id=${UserInfo.getId()})}" method="post"
+              enctype="multipart/form-data">
 <!--          <p><input type='hidden' name='userId' th:value="${userId}"></p>-->
           <div class="mb-3">
             <label for="productName" class="form-label">Product Name</label>
@@ -160,7 +161,7 @@
           </div>
           <div class="mb-3">
             <label for="productImageUrl" class="form-label">Product Image</label>
-            <input type="text" name="productImageUrl" class="form-control" id="productImageUrl" aria-describedby="emailHelp">
+            <input type="file" name="productImageUrl" class="form-control" id="productImageUrl" aria-describedby="emailHelp">
           </div>
 
           <div class="mb-3">
