@@ -54,9 +54,10 @@
       <div class="row pt-3 pb-3">
         <div class="col-9 bid-now">
           <img th:src="@{/img/14.png}">
-          <form th:action="@{/addBid}">
-            <label for="vol">Volume (between 0 and 50):</label>
-            <input type="range" id="vol" name="vol" th:min="${product.minPrice}*0.20" th:max="${product.maxPrice}">
+          <form th:action="@{/addBid/{id}(id=${product.id})}" method="post">
+            <label th:text="'Minimum Bid ' + ${product.minPrice}*0.20 + ' JOD'  " for="myRange">Volume (between 0 and 50):</label>
+           <p>Value : <span id="demoo"></span></p>
+            <input type="range" class="slider" id="myRange" name="vol" th:min="${product.minPrice}*0.20" th:max="${product.maxPrice}">
             <input type="submit" class="btn pink-btn" value="submit Bid">
           </form>
         </div>
@@ -75,5 +76,14 @@
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
 <script th:src="@{/js.js}"></script>
+<script>
+  let slider = document.getElementById("myRange");
+  let output = document.getElementById("demoo");
+  output.innerHTML = slider.value+' JOD';
+
+  slider.oninput = function() {
+    output.innerHTML = this.value +' JOD';
+  }
+</script>
 </body>
 </html>

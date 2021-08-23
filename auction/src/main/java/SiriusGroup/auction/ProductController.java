@@ -128,7 +128,14 @@ public class ProductController {
 
     //mohammad
 
-
+@PostMapping("/addBid/{id}")
+public RedirectView addBid (@PathVariable Long id,@RequestParam int vol){
+    Products products=productsRepository.findById(id).get();
+    int value =vol  +  products.getCurrentPrice();
+    products.setCurrentPrice(value);
+productsRepository.save(products);
+return new RedirectView("/singleProduct/"+id);
+}
 
 
 
