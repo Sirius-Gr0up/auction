@@ -35,7 +35,7 @@ public class ProductController {
 //        Products products1 =  productsRepository.findAll();
 //        model.addAttribute("user",user);
         model.addAttribute("products", productsRepository.findAll());
-        model.addAttribute("isWishlist",applicationUserRepository.findByUsername(p.getName()).isWishlist());
+//        model.addAttribute("isWishlist",applicationUserRepository.findByUsername(p.getName()).isWishlist());
         return "product.html";
     }
 
@@ -183,6 +183,7 @@ return new RedirectView("/singleProduct/"+id);
     @GetMapping("/wish/{id}")
     public RedirectView followUser(Principal p,@PathVariable Long id){
         ApplicationUser getUser=applicationUserRepository.findByUsername(p.getName());
+        productsRepository.findById(id).get().setIsWished(true);
         Products addProduts=productsRepository.findById(id).get();
         getUser.addUserToWishlist(addProduts);
         applicationUserRepository.save(getUser);
