@@ -149,14 +149,36 @@ public class ProductController {
 
 
 
+    @GetMapping ("/wishlist")
+    public String getAllUsers(Model m,Principal p){
+        m.addAttribute("UserInfo", applicationUserRepository.findById(applicationUserRepository.findByUsername(p.getName()).getId()).get());
+
+        return "wishlist.html";
+    }
 
 
 
 
 
 
+    @PostMapping("/wish/{id}")
+    public RedirectView followUser(Principal p,@PathVariable Long id){
+        ApplicationUser getUser=applicationUserRepository.findByUsername(p.getName());
+        Products addProduts=productsRepository.findById(id).get();
+        getUser.addUserToWishlist(addProduts);
+        applicationUserRepository.save(getUser);
+        return new RedirectView("/wishlist");
+    }
 
 
+    @PostMapping("/deleteWish/{id}")
+    public RedirectView unfollowUser(Principal p,@PathVariable Long id){
+        ApplicationUser getUser=applicationUserRepository.findByUsername(p.getName());
+        Products removeList=productsRepository.findById(id).get();
+        getUser.removeUserFromWishlist(removeList);
+        applicationUserRepository.save(getUser);
+        return new RedirectView("/wishlist");
+    }
 
 
 

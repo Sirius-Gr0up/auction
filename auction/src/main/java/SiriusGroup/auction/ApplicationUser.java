@@ -7,6 +7,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.persistence.*;
 import javax.xml.crypto.Data;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
@@ -25,6 +26,14 @@ public class ApplicationUser implements UserDetails {
     private String dateOfBirth;
     private String bio;
     private String imgUrl;
+
+
+    @ManyToMany
+    @JoinTable(name ="wishlist",
+            joinColumns= { @JoinColumn(name = "user_id",referencedColumnName = "id", nullable = false)},
+            inverseJoinColumns= {@JoinColumn(name = "Products_id", referencedColumnName = "id", nullable = false)}
+    )
+    private List<Products> wishlist = new ArrayList<>();
 
     @OneToMany(mappedBy = "owner")
     List<Products> products;
@@ -102,7 +111,23 @@ public class ApplicationUser implements UserDetails {
         return imgUrl;
     }
 
+    public List<Products> getWishlist() {
+        return wishlist;
+    }
 
+    public void setWishlist(List<Products> wishlist) {
+        this.wishlist = wishlist;
+    }
+
+    public void addUserToWishlist(Products products){
+        this.wishlist.add(products);
+    }
+    public void removeUserFromWishlist(Products products){
+        this.wishlist.remove(products);
+    }
+    public Boolean isWishlist(Products products){
+        return this.wishlist.contains(products);
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
