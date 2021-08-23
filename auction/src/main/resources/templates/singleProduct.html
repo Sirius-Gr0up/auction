@@ -48,18 +48,19 @@
           <h1 class="text-center text-danger">End After</h1>
           <div type="date" th:text="${product.time}" class="card-timer d-none" ></div>
           <div class="demo"></div>
+          <form th:action="@{/addBid/{id}(id=${product.id})}" method="post">
+            <label th:text="'Minimum Bid ' + ${product.minPrice}*0.20 + ' JOD'  " for="myRange">Volume (between 0 and 50):</label>
+            <p>Value : <span id="demoo"></span></p>
+            <input type="range" class="slider" id="myRange" name="vol" th:min="${product.minPrice}*0.20" th:max="${product.maxPrice}">
+            <input type="submit" class="btn pink-btn" value="submit Bid">
+          </form>
         </div>
 
       </div>
       <div class="row pt-3 pb-3">
         <div class="col-9 bid-now">
           <img th:src="@{/img/14.png}">
-          <form th:action="@{/addBid/{id}(id=${product.id})}" method="post">
-            <label th:text="'Minimum Bid ' + ${product.minPrice}*0.20 + ' JOD'  " for="myRange">Volume (between 0 and 50):</label>
-           <p>Value : <span id="demoo"></span></p>
-            <input type="range" class="slider" id="myRange" name="vol" th:min="${product.minPrice}*0.20" th:max="${product.maxPrice}">
-            <input type="submit" class="btn pink-btn" value="submit Bid">
-          </form>
+
         </div>
       </div>
 
