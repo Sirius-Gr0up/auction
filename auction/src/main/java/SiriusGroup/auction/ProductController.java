@@ -52,6 +52,8 @@ public class ProductController {
                                         @PathVariable Long id,
                                      @RequestParam String productName,
                                      @RequestParam MultipartFile productImageUrl,
+                                     @RequestParam MultipartFile secondImage,
+                                     @RequestParam MultipartFile thirdImage,
                                      @RequestParam String time,
                                      @RequestParam int maxPrice,
                                      @RequestParam String dis,
@@ -64,12 +66,23 @@ public class ProductController {
         String url = FileUploadUtil.saveFile(uploadDir, fileName, productImageUrl);
 
 
+        String fileName2 = StringUtils.cleanPath(secondImage.getOriginalFilename());
+
+
+        String url2 = FileUploadUtil.saveFile(uploadDir, fileName2, secondImage);
+
+
+        String fileName3 = StringUtils.cleanPath(thirdImage.getOriginalFilename());
+
+
+        String url3 = FileUploadUtil.saveFile(uploadDir, fileName3, thirdImage);
+
         System.out.println("id: "+id);
         System.out.println("time"+time);
         Date date1=new SimpleDateFormat("yyyy-MM-dd").parse(time);
         System.out.println("date1"+date1);
         ApplicationUser applicationUser = applicationUserRepository.findById(id).get();
-        Products products=new Products( dis, productName,url,date1,minPrice, maxPrice,applicationUser);
+        Products products=new Products( dis, productName,url,date1,minPrice, maxPrice,url2,url3,applicationUser);
 //        ApplicationUser user = applicationUserRepository.findByUsername(principal.getName());
         productsRepository.save(products);
         return new RedirectView ("/product");
