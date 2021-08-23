@@ -39,8 +39,8 @@
                 <div class="card m-auto" style="width: 19rem;">
                     <div class="card-icon">
                         <img class="card-img-top" th:src="@{${product.productImageUrl}}" alt="Card image cap"/>
-                        <a th:href="@{}"><i class="fas fa-heart"></i></a>
-                        <a th:href="@{}"><i class="far fa-heart"></i></a>
+                        <a th:href="@{/wish/{id}(id=${product.getId()})}" ><i class="fas fa-heart"></i></a>
+                        <a th:href="@{/deleteWish/{id}(id=${product.getId()})}" ><i class="far fa-heart"></i></a>
                     </div>
 
                     <div class="card-body">
