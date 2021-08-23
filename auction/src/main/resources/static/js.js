@@ -43,6 +43,6 @@ if(distance>=0) {
     }, 1000);
 }
 // let product = new SiriusGroup.auction.Products();
-console.log(time);
+//console.log(time);
 // Set the date we're counting down to
 
