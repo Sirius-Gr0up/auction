@@ -50,16 +50,28 @@ public class ProductController {
                                      @RequestParam String productName,
                                      @RequestParam String productImageUrl,
                                      @RequestParam String time,
+                                     @RequestParam int maxPrice,
+                                     @RequestParam String dis,
                                      @RequestParam int minPrice) throws ParseException {
         System.out.println("id: "+id);
         System.out.println("time"+time);
         Date date1=new SimpleDateFormat("yyyy-MM-dd").parse(time);
         System.out.println("date1"+date1);
         ApplicationUser applicationUser = applicationUserRepository.findById(id).get();
-        Products products=new Products(productName,productImageUrl,date1,minPrice,applicationUser);
+        Products products=new Products( dis, productName,productImageUrl,date1,minPrice, maxPrice,applicationUser);
 //        ApplicationUser user = applicationUserRepository.findByUsername(principal.getName());
         productsRepository.save(products);
         return new RedirectView ("/product");
+    }
+    @GetMapping("/singleProduct/{id}")
+    public String getSingleProduct(@PathVariable Long id,Model m,Principal p){
+
+        Products product=productsRepository.findById(id).get();
+        m.addAttribute("UserInfo", applicationUserRepository.findById(applicationUserRepository.findByUsername(p.getName()).getId()).get());
+        m.addAttribute("product",product);
+
+        return "singleProduct.html";
+
     }
 
 

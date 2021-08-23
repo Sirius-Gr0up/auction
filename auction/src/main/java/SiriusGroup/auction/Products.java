@@ -10,24 +10,78 @@ public class Products {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String dis;
 
-
-    @CreationTimestamp
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "createdAt", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
-    private Date createdAt;
+//    @CreationTimestamp
+//    @Temporal(TemporalType.TIMESTAMP)
+//    @Column(name = "createdAt", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+//    private Date createdAt;
 
     private String productName ;
     private String productImageUrl;
     private Date time;
     private int minPrice;
+    private int maxPrice;
+    private int currentPrice;
 
-    public Date getCreatedAt() {
-        return createdAt;
+
+
+    @ManyToOne
+    ApplicationUser owner;
+
+    public Products(String dis, String productName, String productImageUrl, Date time, int minPrice, int maxPrice, ApplicationUser owner) {
+        this.dis = dis;
+        this.productName = productName;
+        this.productImageUrl = productImageUrl;
+        this.time = time;
+        this.minPrice = minPrice;
+        this.maxPrice = maxPrice;
+        this.owner = owner;
+        this.currentPrice=minPrice;
     }
 
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
+    public Products(String productName, String productImageUrl, Date time, int minPrice , ApplicationUser owner) {
+        this.productName = productName;
+        this.productImageUrl = productImageUrl;
+        this.time = time;
+        this.minPrice = minPrice;
+        this.owner = owner;
+        this.currentPrice=minPrice;
+    }
+    public Products(String productName, String productImageUrl, Date time, int minPrice ) {
+        this.productName = productName;
+        this.productImageUrl = productImageUrl;
+        this.time = time;
+        this.minPrice = minPrice;
+        this.currentPrice=minPrice;
+
+    }
+    public Products() {
+
+    }
+
+    public int getCurrentPrice() {
+        return currentPrice;
+    }
+
+    public void setCurrentPrice(int currentPrice) {
+        this.currentPrice = currentPrice;
+    }
+
+    public String getDis() {
+        return dis;
+    }
+
+    public int getMaxPrice() {
+        return maxPrice;
+    }
+
+    public void setDis(String dis) {
+        this.dis = dis;
+    }
+
+    public void setMaxPrice(int maxPrice) {
+        this.maxPrice = maxPrice;
     }
 
     public ApplicationUser getOwner() {
@@ -37,29 +91,6 @@ public class Products {
     public void setOwner(ApplicationUser owner) {
         this.owner = owner;
     }
-
-    @ManyToOne
-    ApplicationUser owner;
-
-
-    public Products(String productName, String productImageUrl, Date time, int minPrice ,ApplicationUser owner) {
-        this.productName = productName;
-        this.productImageUrl = productImageUrl;
-        this.time = time;
-        this.minPrice = minPrice;
-        this.owner = owner;
-    }
-    public Products(String productName, String productImageUrl, Date time, int minPrice ) {
-        this.productName = productName;
-        this.productImageUrl = productImageUrl;
-        this.time = time;
-        this.minPrice = minPrice;
-
-    }
-    public Products() {
-
-    }
-
     public Long getId() {
         return id;
     }

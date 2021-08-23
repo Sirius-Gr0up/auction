@@ -200,7 +200,7 @@ background-color: #fff !important;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding-top: 5vh ;
+    padding-top: 3vh ;
 }
 .form-area{
     width: 90%;
@@ -448,7 +448,7 @@ footer .nav-link i{
     text-decoration: none;
 }
 .modal-dialog{
-    max-width: 60%;
+    max-width: 50%;
 }
 .modal-body {
     padding: 2vh 4rem;
@@ -565,4 +565,82 @@ footer .nav-link i{
     font-size: 1.2rem;
     border-radius: 50%;
 }
+.dis{
+    color: #aaa;
+}
+.demo{
+    text-shadow: 0px 5px 3px rgb(245 49 127 / 20%);
+    background: -webkit-linear-gradient(
+            135deg
+            , #b122e6 0%, #ff63de 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 30px;
+    line-height: 1;
+    text-align: center;
+}
 /*end my products page*/
+/*start single product*/
+.box-img{
+    width: 90%;
+    height:50vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+    border-radius: 1rem;
+    margin: auto;
+}
+.box-img img{
+    width: 100%;
+    height: 100%;
+
+}
+.header-product{
+    width: 100%;
+}
+.header-product h1{
+    color: var(--main-color);
+    /*text-shadow: 2px 1px 8px #232323;*/
+    font-family: sans-serif;
+    font-size: 3rem;
+    font-weight: 900;
+}
+.header-product p{
+    color: #aaa;
+    font-size: 1.5rem;
+    word-wrap: break-word;
+}
+.product-box-back{
+    width: 100%;
+    height: max-content;
+    border-radius: 1rem;
+    background-color: #EBF2FF;
+    padding: 1.5rem;
+
+}
+.product-box-row{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.countdown{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 1rem;
+    border: 1px solid #aaa;
+    flex-direction: column;
+}
+.bid-now{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #aaa;
+    border-bottom: 1px solid #aaa;
+    padding :3rem 0;
+}
+/*end single product */

@@ -45,6 +45,7 @@
 <!--                            <form th:action="@{/myProducts/{id}(id=${product.getId()})}" method="get">-->
 <!--                                <button type="submit" class="btn  btn-outline-info my-btn">Delete</button>-->
 <!--                            </form>-->
+                            <p class="dis" th:text="${product.dis}"></p>
                             <div class="price">
                                 <div class="current-Bid">
                                     <i class="fa fa-gavel text-success" aria-hidden="true"></i>
@@ -57,7 +58,7 @@
                                     <i class="fas fa-hand-holding-usd text-danger"></i>
                                     <div class="text-price">
                                         <p class="text-danger">Buy Now</p>
-                                        <p>$876.00</p>
+                                        <p th:text="${product.maxPrice}"></p>
                                     </div>
                                 </div>
                             </div>
