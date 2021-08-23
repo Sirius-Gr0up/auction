@@ -61,8 +61,8 @@ public class ProductController {
 
 
         String fileName = StringUtils.cleanPath(productImageUrl.getOriginalFilename());
-
-        String uploadDir = "/Users/dawoodabuzahra/401/auction/auction/src/main/resources/static/img" ;
+        String uploadDir = "/Users/user/LTUC/auction/auction/src/main/resources/static/img" ;
+//        String uploadDir = "/Users/dawoodabuzahra/401/auction/auction/src/main/resources/static/img" ;
         String url = FileUploadUtil.saveFile(uploadDir, fileName, productImageUrl);
 
 
