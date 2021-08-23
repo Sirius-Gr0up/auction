@@ -55,13 +55,13 @@
                                 <i class="fas fa-hand-holding-usd text-danger"></i>
                                 <div class="text-price">
                                     <p class="text-danger">Buy Now</p>
-                                    <p>$876.00</p>
+                                    <p th:text="${product.maxPrice}"></p>
                                 </div>
                             </div>
                         </div>
                         <div type="date" th:text="${product.time}" class="card-timer d-none" ></div>
                         <div class="demo"></div>
-                        <a href="#" class="btn  btn-outline-info pink-btn">Go somewhere</a>
+                        <a th:href="@{/singleProduct/{id} (id=${product.getId()})}" class="btn  btn-outline-info pink-btn mt-3">Bid Now</a>
                     </div>
 
                 </div>

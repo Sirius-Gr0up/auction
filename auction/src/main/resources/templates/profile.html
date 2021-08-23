@@ -141,7 +141,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Edit your info </h5>
+        <h5 class="modal-title" id="exampleModalLabel1">Add new product </h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -154,7 +154,10 @@
             <label for="productName" class="form-label">Product Name</label>
             <input type="text" name="productName" class="form-control" id="productName" aria-describedby="emailHelp">
           </div>
-
+          <div class="mb-3">
+            <label for="dis" class="form-label">Description</label>
+            <input type="text" name="dis" class="form-control" id="dis" aria-describedby="emailHelp">
+          </div>
           <div class="mb-3">
             <label for="productImageUrl" class="form-label">Product Image</label>
             <input type="text" name="productImageUrl" class="form-control" id="productImageUrl" aria-describedby="emailHelp">
@@ -165,11 +168,17 @@
             <input type="date" th:min="${UserInfo.getNow()}" name="time" class="form-control" id="time" aria-describedby="emailHelp">
           </div>
 
-
-          <div class="mb-3">
-            <label for="minPrice" class="form-label">Minimum Price</label>
-            <input type="text" name="minPrice" class="form-control" id="minPrice" aria-describedby="emailHelp">
+          <div class="row">
+            <div class="col mb-3">
+              <label for="minPrice" class="form-label">Minimum Price</label>
+              <input type="text" name="minPrice" class="form-control" id="minPrice" aria-describedby="emailHelp">
+            </div>
+            <div class="col mb-3">
+              <label for="maxPrice" class="form-label">max Price</label>
+              <input type="text" name="maxPrice" class="form-control" id="maxPrice" aria-describedby="emailHelp">
+            </div>
           </div>
+
 
 <!--          <p>product Name <input type="text" field="*{productName}"  name="productName" /></p>-->
 <!--          <p> product Image<input type="productImageUrl" field="*{productImageUrl}" name="productImageUrl" /></p>-->

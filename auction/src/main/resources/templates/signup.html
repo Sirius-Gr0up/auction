@@ -29,48 +29,54 @@
                    
                         <form class="form-area" th:action="@{/signup}" method="post"
                               enctype="multipart/form-data">
-                            <div class="mb-3">
-                                <label for="username" class="form-label">Email</label>
-                                <input type="email" name="username" class="form-control" id="username" aria-describedby="emailHelp">
-                            </div>
-    
-                            <div class="mb-3">
-                                <label for="password" class="form-label">Password</label>
-                                <input name="password" type="password" class="form-control" id="password">
-                            </div>
-                            <div class="mb-3">
-                                <label for="firstName" class="form-label">firstName</label>
-                                <input type="text" name="firstName" class="form-control" id="firstName" aria-describedby="emailHelp">
-                            </div>
-    
-                            <div class="mb-3">
-                                <label for="lastName" class="form-label">lastName</label>
-                                <input type="text" name="lastName" class="form-control" id="lastName" aria-describedby="emailHelp">
-                            </div>
-    
-                            <div class="mb-3">
-                                <label for="dateOfBirth" class="form-label">dateOfBirth</label>
-                                <input type="date" name="dateOfBirth" class="form-control" id="dateOfBirth" aria-describedby="emailHelp">
-                            </div>
-    
-                        <div class="mb-3">
-                            <label for="bio" class="form-label">bio</label>
-                            <input type="text" name="bio" class="form-control" id="bio" aria-describedby="emailHelp">
-                        </div>
+                            <div class="row">
+                                <div class="col mb-3">
+                                    <label for="username" class="form-label">Email</label>
+                                    <input type="email" name="username" class="form-control" id="username" aria-describedby="emailHelp">
+                                </div>
 
-
-                            <div class="mb-3">
-                                <label for="imageUrl" class="form-label">imageUrl</label>
-                                <input type="file" name="imageUrl" class="form-control" id="imageUrl" aria-describedby="emailHelp">
+                                <div class="col mb-3">
+                                    <label for="password" class="form-label">Password</label>
+                                    <input name="password" type="password" class="form-control" id="password">
+                                </div>
                             </div>
 
-<!--                            <div class="mb-3">-->
-<!--                                <label for="imageUrl" class="form-label">imageUrl</label>-->
-<!--                                <input type="text" name="imageUrl" class="form-control" id="imageUrl" aria-describedby="emailHelp">-->
-<!--                            </div>-->
+                            <div class="row">
+                                <div class="col mb-3">
+                                    <label for="firstName" class="form-label">firstName</label>
+                                    <input type="text" name="firstName" class="form-control" id="firstName" aria-describedby="emailHelp">
+                                </div>
 
-    
-                            <button type="submit" class="btn  btn-outline-info my-btn">Submit</button>
+                                <div class="col mb-3">
+                                    <label for="lastName" class="form-label">lastName</label>
+                                    <input type="text" name="lastName" class="form-control" id="lastName" aria-describedby="emailHelp">
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col mb-3">
+                                    <label for="dateOfBirth" class="form-label">dateOfBirth</label>
+                                    <input type="date" name="dateOfBirth" class="form-control" id="dateOfBirth" aria-describedby="emailHelp">
+                                </div>
+                                <div class="col mb-3">
+                                    <label for="bio" class="form-label">bio</label>
+                                    <input type="text" name="bio" class="form-control" id="bio" aria-describedby="emailHelp">
+                                </div>
+                            </div>
+
+
+
+
+
+                                <div class=" mb-3">
+                                    <label for="imageUrl" class="form-label">imageUrl</label>
+                                    <input type="file" name="imageUrl" class="form-control" id="imageUrl" aria-describedby="emailHelp">
+                                </div>
+
+
+                                <button type="submit" class="btn  btn-outline-info my-btn">Submit</button>
+
+
         
                         </form>
                 </div>
