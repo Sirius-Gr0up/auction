@@ -1,3 +1,4 @@
+
 package SiriusGroup.auction;
 
 import org.hibernate.annotations.CreationTimestamp;
