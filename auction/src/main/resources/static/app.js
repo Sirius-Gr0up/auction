@@ -48,13 +48,21 @@ function sendName() {
 }
 
 function showGreeting(message) {
-    $("#greetings").append("<tr><td>" + message + "</td></tr>");
+    $("#greetings").append("<p>" + message + "</p>");
 }
 
+// $(function () {
+//     $("form").on('submit', function (e) {
+//         e.preventDefault();
+//     });
+//     // $( "#connect" ).click(function() { connect(); });
+//     // $( "#disconnect" ).click(function() { disconnect(); });
+//     $( "#send" ).click(function() { sendName(); });
+// });
 $(function () {
-    $("form").on('submit', function (e) {
-        e.preventDefault();
-    });
+    // $("#send").on('submit', function (e) {
+    //     e.preventDefault();
+    // });
     // $( "#connect" ).click(function() { connect(); });
     // $( "#disconnect" ).click(function() { disconnect(); });
     $( "#send" ).click(function() { sendName(); });
