@@ -68,13 +68,17 @@
                                     <p th:text="${product.minPrice} +' JOD' "></p>
                                 </div>
                             </div>
-                            <div class="current-Bid ">
+
+                            <div class="current-Bid " style="cursor: pointer;">
+                                <a  th:href="@{/by/{id} (id=${product.getId()})}">
                                 <i class="fas fa-hand-holding-usd text-danger"></i>
                                 <div class="text-price">
                                     <p class="text-danger">Buy Now</p>
                                     <p th:text="${product.maxPrice}"></p>
                                 </div>
+                                </a>
                             </div>
+
                         </div>
 
                         <div type="date" th:text="${product.time}" class="card-timer d-none" ></div>
