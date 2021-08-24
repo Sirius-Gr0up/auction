@@ -48,6 +48,19 @@ public class ApplicationUserController {
         return "index.html";
     }
 
+    @GetMapping("/aboutUs")
+    public String getAboutUs(Principal p, Model model){
+        try {
+            model.addAttribute("UserInfo", applicationUserRepository.findById(applicationUserRepository.findByUsername(p.getName()).getId()).get());
+            System.out.println(applicationUserRepository.findByUsername(p.getName()).getImgUrl());
+        } catch (NullPointerException e) {
+
+            model.addAttribute("userInfo", "");
+
+        }
+        return "aboutUs.html";
+    }
+
     @GetMapping("/signup")
     public String getSignUpPage() {
         return "signup.html";
@@ -69,9 +82,9 @@ public class ApplicationUserController {
 
             String fileName = StringUtils.cleanPath(imageUrl.getOriginalFilename());
             //        String uploadDir = "/Users/S4C/auction/auction/src/main/resources/static/img";
-//         String uploadDir = "/Users/Khalil/ASAC/401mid/auction/auction/src/main/resources/static/img" ;
+         String uploadDir = "/Users/Khalil/ASAC/auction/auction/src/main/resources/static/img" ;
 //            String uploadDir = "/Users/dawoodabuzahra/401/auction/auction/src/main/resources/static/img" ;
-                    String uploadDir = "/Users/user/LTUC/auction/auction/src/main/resources/static/img" ;
+//                    String uploadDir = "/Users/user/LTUC/auction/auction/src/main/resources/static/img" ;
 
             String url = FileUploadUtil.saveFile(uploadDir, fileName, imageUrl);
             ApplicationUser newUser = new ApplicationUser(username, bCryptPasswordEncoder.encode(password), firstName, lastName, dateOfBirth, bio, url);
@@ -81,6 +94,7 @@ public class ApplicationUserController {
             SecurityContextHolder.getContext().setAuthentication(authentication);
 
 
+
         }
         else
         {
@@ -88,8 +102,10 @@ public class ApplicationUserController {
             ApplicationUser newUser = new ApplicationUser(username, bCryptPasswordEncoder.encode(password), firstName, lastName, dateOfBirth, bio, "/img/avatar.png");
             applicationUserRepository.save(newUser);
 
+
             Authentication authentication = new UsernamePasswordAuthenticationToken(newUser, null, new ArrayList<>());
             SecurityContextHolder.getContext().setAuthentication(authentication);
+
 
         }
 
@@ -134,10 +150,13 @@ public class ApplicationUserController {
         String fileName = StringUtils.cleanPath(imageUrl.getOriginalFilename());
 
 
-//        String uploadDir = "/Users/dawoodabuzahra/401/auction/auction/src/main/resources/static/img" ;
-//        String uploadDir = "/Users/Khalil/ASAC/401mid/auction/auction/src/main/resources/static/img" ;
 
-        String uploadDir = "/Users/user/LTUC/auction/auction/src/main/resources/static/img" ;
+//        String uploadDir = "/Users/dawoodabuzahra/401/auction/auction/src/main/resources/static/img" ;
+
+        String uploadDir = "/Users/Khalil/ASAC/auction/auction/src/main/resources/static/img" ;
+
+//        String uploadDir = "/Users/user/LTUC/auction/auction/src/main/resources/static/img" ;
+
 
 //        String uploadDir = "Users/S4C/auction/auction/src/main/resources/static/img" ;
 

@@ -1,3 +1,4 @@
+
 package SiriusGroup.auction;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -181,3 +182,5 @@ public class Products {
         this.curUser = curUser;
     }
 }
+
+

@@ -39,8 +39,23 @@
                 <div class="card m-auto" style="width: 19rem;">
                     <div class="card-icon">
                         <img class="card-img-top" th:src="@{${product.productImageUrl}}" alt="Card image cap"/>
-<!--                        <a th:href="@{}"><i class="fas fa-heart"></i></a>-->
-<!--                        <a th:href="@{}"><i class="far fa-heart"></i></a>-->
+<!--                        wishlist div start-->
+                        <div th:if="${product.owner.getId() !=UserInfo.getId()}">
+                            <div th:if="${UserInfo.isWishlist(product)}">
+                                <!--                            <a th:href="@{/wish/{id}(id=${product.getId()})}" ><i class="fas fa-heart"></i></a>-->
+                                <form action="#" th:action="@{/deleteWish/{id}(id=${product.getId()})}" method="get" >
+                                    <button type="submit" class="btn-wishlist" title="Remove from wishlist" ><i class="fas fa-heart"></i></button>
+                                </form>
+                            </div>
+                            <div th:unless="${UserInfo.isWishlist(product)}">
+                                <!--                            <a th:href="@{/deleteWish/{id}(id=${product.getId()})}" ><i class="far fa-heart"></i></a>-->
+                                <form action="#" th:action="@{/wish/{id}(id=${product.getId()})}" method="get" >
+                                    <button type="submit" class="btn-wishlist" title="Add to wishlist" ><i class="far fa-heart"></i></button>
+                                </form>
+                            </div>
+                        </div>
+<!--                        wishlist div end-->
+
                     </div>
 
                     <div class="card-body">
