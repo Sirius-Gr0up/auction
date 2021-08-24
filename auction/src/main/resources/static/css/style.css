@@ -688,3 +688,19 @@ footer .nav-link i{
     background-color: #eee;
 }
 /*end single product */
+/*Start AboutUs */
+.au-header{
+    padding-left: 6%;
+    padding-top: 8%;
+    font-weight: bolder;
+    color: #fff !important;
+}
+.au-paragraph {
+    color: #fff !important;
+    padding-top: 3%;
+    padding-left: 10%;
+    padding-right: 10%;
+    font-weight: bolder;
+    font-size: 1.2rem;
+}
+/*End AboutUs */

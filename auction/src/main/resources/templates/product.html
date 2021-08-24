@@ -44,13 +44,13 @@
                             <div th:if="${UserInfo.isWishlist(product)}">
                                 <!--                            <a th:href="@{/wish/{id}(id=${product.getId()})}" ><i class="fas fa-heart"></i></a>-->
                                 <form action="#" th:action="@{/deleteWish/{id}(id=${product.getId()})}" method="get" >
-                                    <button type="submit" class="btn-wishlist" title="Remove from wishlist" ><i class="far fa-heart"></i></button>
+                                    <button type="submit" class="btn-wishlist" title="Remove from wishlist" ><i class="fas fa-heart"></i></button>
                                 </form>
                             </div>
                             <div th:unless="${UserInfo.isWishlist(product)}">
                                 <!--                            <a th:href="@{/deleteWish/{id}(id=${product.getId()})}" ><i class="far fa-heart"></i></a>-->
                                 <form action="#" th:action="@{/wish/{id}(id=${product.getId()})}" method="get" >
-                                    <button type="submit" class="btn-wishlist" title="Add to wishlist" ><i class="fas fa-heart"></i></button>
+                                    <button type="submit" class="btn-wishlist" title="Add to wishlist" ><i class="far fa-heart"></i></button>
                                 </form>
                             </div>
                         </div>
