@@ -28,7 +28,7 @@ public class Products {
     private int minPrice;
     private int maxPrice;
     private int currentPrice;
-    private boolean isWished=false;
+//    private boolean isWished=false;
 
 
     @ManyToOne
@@ -165,12 +165,12 @@ public class Products {
     public void setBiding(List<Greeting> biding) {
         this.biding = biding;
 
-    public boolean isIsWished() {
-        return isWished;
-    }
-
-    public void setIsWished(boolean isWished) {
-        this.isWished = isWished;
-
-    }
-}
+//    public boolean isIsWished() {
+//        return isWished;
+//    }
+//
+//    public void setIsWished(boolean isWished) {
+//        this.isWished = isWished;
+//
+//    }
+}}

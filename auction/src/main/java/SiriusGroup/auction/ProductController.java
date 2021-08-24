@@ -196,7 +196,7 @@ return new RedirectView("/singleProduct/"+id);
     @GetMapping("/wish/{id}")
     public RedirectView followUser(Principal p,@PathVariable Long id){
         ApplicationUser getUser=applicationUserRepository.findByUsername(p.getName());
-        productsRepository.findById(id).get().setIsWished(true);
+//        productsRepository.findById(id).get().setIsWished(true);
         Products addProduts=productsRepository.findById(id).get();
         getUser.addUserToWishlist(addProduts);
         applicationUserRepository.save(getUser);
