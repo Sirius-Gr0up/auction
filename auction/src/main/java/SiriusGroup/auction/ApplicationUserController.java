@@ -48,6 +48,19 @@ public class ApplicationUserController {
         return "index.html";
     }
 
+    @GetMapping("/aboutUs")
+    public String getAboutUs(Principal p, Model model){
+        try {
+            model.addAttribute("UserInfo", applicationUserRepository.findById(applicationUserRepository.findByUsername(p.getName()).getId()).get());
+            System.out.println(applicationUserRepository.findByUsername(p.getName()).getImgUrl());
+        } catch (NullPointerException e) {
+
+            model.addAttribute("userInfo", "");
+
+        }
+        return "aboutUs.html";
+    }
+
     @GetMapping("/signup")
     public String getSignUpPage() {
         return "signup.html";
