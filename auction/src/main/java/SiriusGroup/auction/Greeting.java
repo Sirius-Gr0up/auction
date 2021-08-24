@@ -22,15 +22,15 @@ public class Greeting {
     public Greeting() {
     }
 
+    public Greeting(String content, Products bidingProduct) {
+        this.content = content;
+        this.bidingProduct = bidingProduct;
+    }
+
     public Greeting(String content) {
         this.content = content;
     }
 
-
-    public Greeting(String content, String winner) {
-        this.content = content;
-        this.winner = winner;
-    }
 
     public String getNow() {
         return now;
@@ -85,5 +85,5 @@ public class Greeting {
     public void setBidingProduct(Products bidingProduct) {
         this.bidingProduct = bidingProduct;
     }
-    
+
 }

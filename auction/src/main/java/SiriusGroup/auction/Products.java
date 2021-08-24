@@ -1,8 +1,10 @@
+
 package SiriusGroup.auction;
 
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -18,7 +20,7 @@ public class Products {
 //    @Column(name = "createdAt", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
 //    private Date createdAt;
 
-    private String productName;
+    private String productName ;
     private String productImageUrl;
     private String secondImage;
 
@@ -28,15 +30,18 @@ public class Products {
     private int minPrice;
     private int maxPrice;
     private int currentPrice;
-//    private boolean isWished=false;
 
 
     @ManyToOne
     ApplicationUser owner;
-    @OneToMany(mappedBy = "bidingProduct")
-    private List<Greeting> biding;
 
-    public Products(String dis, String productName, String productImageUrl, Date time, int minPrice, int maxPrice, String secondImage, String thirdImage, ApplicationUser owner) {
+    @ManyToMany(mappedBy = "wishlist")
+    private List<ApplicationUser> curUser;
+
+    @OneToMany(fetch = FetchType.EAGER,mappedBy = "bidingProduct", cascade = CascadeType.ALL)
+    private List<Greeting> biding=new ArrayList<>();
+
+    public Products(String dis, String productName, String productImageUrl, Date time, int minPrice, int maxPrice,String secondImage,String thirdImage, ApplicationUser owner) {
         this.dis = dis;
         this.productName = productName;
         this.productImageUrl = productImageUrl;
@@ -44,34 +49,32 @@ public class Products {
         this.minPrice = minPrice;
         this.maxPrice = maxPrice;
         this.owner = owner;
-        this.currentPrice = minPrice;
-        this.secondImage = secondImage;
-        this.thirdImage = thirdImage;
+        this.currentPrice=minPrice;
+        this.secondImage=secondImage;
+        this.thirdImage=thirdImage;
 
     }
 
-    public Products(String productName, String productImageUrl, Date time, int minPrice, ApplicationUser owner) {
+    public Products(String productName, String productImageUrl, Date time, int minPrice , ApplicationUser owner) {
         this.productName = productName;
         this.productImageUrl = productImageUrl;
         this.time = time;
         this.minPrice = minPrice;
         this.owner = owner;
-        this.currentPrice = minPrice;
+        this.currentPrice=minPrice;
     }
 
-    public Products(String productName, String productImageUrl, Date time, int minPrice) {
+    public Products(String productName, String productImageUrl, Date time, int minPrice ) {
         this.productName = productName;
         this.productImageUrl = productImageUrl;
         this.time = time;
         this.minPrice = minPrice;
-        this.currentPrice = minPrice;
+        this.currentPrice=minPrice;
 
     }
-
     public Products() {
 
     }
-
     public int getCurrentPrice() {
         return currentPrice;
     }
@@ -119,7 +122,6 @@ public class Products {
     public void setThirdImage(String thirdImage) {
         this.thirdImage = thirdImage;
     }
-
     public Long getId() {
         return id;
     }
@@ -160,12 +162,23 @@ public class Products {
         this.minPrice = minPrice;
     }
 
-
     public List<Greeting> getBiding() {
         return biding;
     }
 
     public void setBiding(List<Greeting> biding) {
         this.biding = biding;
+    }
+    public void addbiding(Greeting g){
+        this.biding.add(g);
+    }
 
-    }}
+    public List<ApplicationUser> getCurUser() {
+
+        return curUser;
+    }
+
+    public void setCurUser(List<ApplicationUser> curUser) {
+        this.curUser = curUser;
+    }
+}
