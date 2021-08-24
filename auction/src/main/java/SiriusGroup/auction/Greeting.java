@@ -1,14 +1,22 @@
 package SiriusGroup.auction;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+@Entity
 public class Greeting {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String content;
     private String winner;
     private String now;
-    private List<ApplicationUser>participants=new ArrayList<ApplicationUser>();
+    @ManyToOne
+    private Products bidingProduct;
+
+//    private List<ApplicationUser>participants=new ArrayList<ApplicationUser>();
 
 
     public Greeting() {
@@ -44,17 +52,38 @@ public class Greeting {
         this.winner = winner;
     }
 
-    public List<ApplicationUser> getParticipants() {
-        return participants;
+//    public List<ApplicationUser> getParticipants() {
+//        return participants;
+//    }
+
+//    public void setParticipants(List<ApplicationUser> participants) {
+//        this.participants = participants;
+//    }
+//    public boolean isParticipants(ApplicationUser user){
+//        return this.participants.contains(user);
+//    }
+//    public void addParticipants(ApplicationUser user){
+//        this.participants.add(user);
+//    }
+
+    public Long getId() {
+        return id;
     }
 
-    public void setParticipants(List<ApplicationUser> participants) {
-        this.participants = participants;
+    public Products getBidingProduct() {
+        return bidingProduct;
     }
-    public boolean isParticipants(ApplicationUser user){
-        return this.participants.contains(user);
+
+    public void setId(Long id) {
+        this.id = id;
     }
-    public void addParticipants(ApplicationUser user){
-        this.participants.add(user);
+
+    public void setContent(String content) {
+        this.content = content;
     }
+
+    public void setBidingProduct(Products bidingProduct) {
+        this.bidingProduct = bidingProduct;
+    }
+    
 }

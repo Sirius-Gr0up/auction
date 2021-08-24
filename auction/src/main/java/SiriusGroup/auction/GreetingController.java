@@ -25,8 +25,8 @@ public class GreetingController {
         Thread.sleep(1000); // simulated delay
         String name=applicationUserRepository.findByUsername(p.getName()).getFirstName()+' '+applicationUserRepository.findByUsername(p.getName()).getLastName();
           ApplicationUser user =applicationUserRepository.findByUsername(p.getName());
-          Greeting g=new Greeting(HtmlUtils.htmlEscape(message.getName())+'!');
-         g.setWinner(user.getFirstName());
+          Greeting g=new Greeting(HtmlUtils.htmlEscape(message.getName())+" bid");
+         g.setWinner(user.getFirstName() +' '+ user.getLastName());
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
         Date date = new Date();
         g.setNow(formatter.format(date));

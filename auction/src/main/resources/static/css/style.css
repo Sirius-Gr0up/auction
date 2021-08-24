@@ -672,4 +672,14 @@ footer .nav-link i{
     background: #04AA6D;
     cursor: pointer;
 }
+.bid-row{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.bid-row:nth-child(odd){
+    background-color: #eee;
+}
 /*end single product */
