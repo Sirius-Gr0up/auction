@@ -18,7 +18,7 @@ public class Products {
 //    @Column(name = "createdAt", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
 //    private Date createdAt;
 
-    private String productName ;
+    private String productName;
     private String productImageUrl;
     private String secondImage;
 
@@ -28,7 +28,7 @@ public class Products {
     private int minPrice;
     private int maxPrice;
     private int currentPrice;
-    private boolean isWished=false;
+//    private boolean isWished=false;
 
 
     @ManyToOne
@@ -36,7 +36,7 @@ public class Products {
     @OneToMany(mappedBy = "bidingProduct")
     private List<Greeting> biding;
 
-    public Products(String dis, String productName, String productImageUrl, Date time, int minPrice, int maxPrice,String secondImage,String thirdImage, ApplicationUser owner) {
+    public Products(String dis, String productName, String productImageUrl, Date time, int minPrice, int maxPrice, String secondImage, String thirdImage, ApplicationUser owner) {
         this.dis = dis;
         this.productName = productName;
         this.productImageUrl = productImageUrl;
@@ -44,32 +44,34 @@ public class Products {
         this.minPrice = minPrice;
         this.maxPrice = maxPrice;
         this.owner = owner;
-        this.currentPrice=minPrice;
-        this.secondImage=secondImage;
-        this.thirdImage=thirdImage;
+        this.currentPrice = minPrice;
+        this.secondImage = secondImage;
+        this.thirdImage = thirdImage;
 
     }
 
-    public Products(String productName, String productImageUrl, Date time, int minPrice , ApplicationUser owner) {
+    public Products(String productName, String productImageUrl, Date time, int minPrice, ApplicationUser owner) {
         this.productName = productName;
         this.productImageUrl = productImageUrl;
         this.time = time;
         this.minPrice = minPrice;
         this.owner = owner;
-        this.currentPrice=minPrice;
+        this.currentPrice = minPrice;
     }
 
-    public Products(String productName, String productImageUrl, Date time, int minPrice ) {
+    public Products(String productName, String productImageUrl, Date time, int minPrice) {
         this.productName = productName;
         this.productImageUrl = productImageUrl;
         this.time = time;
         this.minPrice = minPrice;
-        this.currentPrice=minPrice;
+        this.currentPrice = minPrice;
 
     }
+
     public Products() {
 
     }
+
     public int getCurrentPrice() {
         return currentPrice;
     }
@@ -117,6 +119,7 @@ public class Products {
     public void setThirdImage(String thirdImage) {
         this.thirdImage = thirdImage;
     }
+
     public Long getId() {
         return id;
     }
@@ -164,13 +167,14 @@ public class Products {
 
     public void setBiding(List<Greeting> biding) {
         this.biding = biding;
-
-    public boolean isIsWished() {
-        return isWished;
+    }
+//    public boolean isIsWished() {
+//        return isWished;
+//    }
+//
+//    public void setIsWished(boolean isWished) {
+//        this.isWished = isWished;
+//
+//    }
     }
 
-    public void setIsWished(boolean isWished) {
-        this.isWished = isWished;
-
-    }
-}
