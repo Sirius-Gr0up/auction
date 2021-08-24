@@ -97,18 +97,17 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-md-12">
-          <table id="conversation" class="table table-striped">
-            <thead>
-            <tr>
-              <th>Greetings</th>
+        <div class="col-md-9">
 
-            </tr>
-            </thead>
-            <tbody id="greetings">
-            <!--                <p id="name2" class="d-none">rawam alakhras</p>-->
-            </tbody>
-          </table>
+              <th>History of bidding</th>
+
+
+            <div id="greetings" class="bid-row" th:each="bid : ${product.getBiding()}">
+              <p th:text="${bid.content}"></p>
+              <p th:text="${bid.winner}"></p>
+              <p th:text="${bid.now}"></p>
+            </div>
+
         </div>
       </div>
 

@@ -4,6 +4,7 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 public class Products {
@@ -32,6 +33,8 @@ public class Products {
 
     @ManyToOne
     ApplicationUser owner;
+    @OneToMany(mappedBy = "bidingProduct")
+    private List<Greeting> biding;
 
     public Products(String dis, String productName, String productImageUrl, Date time, int minPrice, int maxPrice,String secondImage,String thirdImage, ApplicationUser owner) {
         this.dis = dis;
@@ -154,11 +157,20 @@ public class Products {
         this.minPrice = minPrice;
     }
 
+
+    public List<Greeting> getBiding() {
+        return biding;
+    }
+
+    public void setBiding(List<Greeting> biding) {
+        this.biding = biding;
+
     public boolean isIsWished() {
         return isWished;
     }
 
     public void setIsWished(boolean isWished) {
         this.isWished = isWished;
+
     }
 }
