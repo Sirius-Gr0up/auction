@@ -19,6 +19,10 @@ public class Products {
 
     private String productName ;
     private String productImageUrl;
+    private String secondImage;
+
+    private String thirdImage;
+
     private Date time;
     private int minPrice;
     private int maxPrice;
@@ -26,11 +30,10 @@ public class Products {
     private boolean isWished=false;
 
 
-
     @ManyToOne
     ApplicationUser owner;
 
-    public Products(String dis, String productName, String productImageUrl, Date time, int minPrice, int maxPrice, ApplicationUser owner) {
+    public Products(String dis, String productName, String productImageUrl, Date time, int minPrice, int maxPrice,String secondImage,String thirdImage, ApplicationUser owner) {
         this.dis = dis;
         this.productName = productName;
         this.productImageUrl = productImageUrl;
@@ -39,6 +42,9 @@ public class Products {
         this.maxPrice = maxPrice;
         this.owner = owner;
         this.currentPrice=minPrice;
+        this.secondImage=secondImage;
+        this.thirdImage=thirdImage;
+
     }
 
     public Products(String productName, String productImageUrl, Date time, int minPrice , ApplicationUser owner) {
@@ -49,6 +55,7 @@ public class Products {
         this.owner = owner;
         this.currentPrice=minPrice;
     }
+
     public Products(String productName, String productImageUrl, Date time, int minPrice ) {
         this.productName = productName;
         this.productImageUrl = productImageUrl;
@@ -60,7 +67,6 @@ public class Products {
     public Products() {
 
     }
-
     public int getCurrentPrice() {
         return currentPrice;
     }
@@ -91,6 +97,22 @@ public class Products {
 
     public void setOwner(ApplicationUser owner) {
         this.owner = owner;
+    }
+
+    public String getSecondImage() {
+        return secondImage;
+    }
+
+    public void setSecondImage(String secondImage) {
+        this.secondImage = secondImage;
+    }
+
+    public String getThirdImage() {
+        return thirdImage;
+    }
+
+    public void setThirdImage(String thirdImage) {
+        this.thirdImage = thirdImage;
     }
     public Long getId() {
         return id;
