@@ -1,11 +1,14 @@
 package SiriusGroup.auction;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.context.annotation.Lazy;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
 
 @Entity
 public class Products {
@@ -34,10 +37,11 @@ public class Products {
     @ManyToOne
     ApplicationUser owner;
 
+
     @ManyToMany(mappedBy = "wishlist")
     private List<ApplicationUser> curUser;
 
-    @OneToMany(fetch = FetchType.EAGER,mappedBy = "bidingProduct", cascade = CascadeType.ALL)
+    @OneToMany(fetch=FetchType.EAGER,mappedBy = "bidingProduct", cascade = CascadeType.ALL)
     private List<Greeting> biding=new ArrayList<>();
 
     public Products(String dis, String productName, String productImageUrl, Date time, int minPrice, int maxPrice,String secondImage,String thirdImage, ApplicationUser owner) {

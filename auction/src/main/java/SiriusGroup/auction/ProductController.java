@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.view.RedirectView;
+import org.springframework.web.util.HtmlUtils;
 
+import javax.transaction.Transactional;
 import java.io.IOException;
 import java.security.Principal;
 import java.text.ParseException;
@@ -19,6 +21,7 @@ import java.util.Date;
 import java.util.List;
 
 @Controller
+
 public class ProductController {
 
         @Autowired
@@ -90,10 +93,12 @@ public class ProductController {
         productsRepository.save(products);
         return new RedirectView ("/product");
     }
+
     @GetMapping("/singleProduct/{id}")
     public String getSingleProduct(@PathVariable Long id,Model m,Principal p){
 
         Products product=productsRepository.findById(id).get();
+
         m.addAttribute("UserInfo", applicationUserRepository.findById(applicationUserRepository.findByUsername(p.getName()).getId()).get());
         m.addAttribute("product",product);
 
@@ -154,14 +159,22 @@ public class ProductController {
     ////////////////////////////////////////
 
     //mohammad
-
+    @Transactional
 @PostMapping("/addBid/{id}")
 public RedirectView addBid (@PathVariable Long id,@RequestParam int vol,Principal p){
     ApplicationUser user =applicationUserRepository.findByUsername(p.getName());
     Products products=productsRepository.findById(id).get();
     int value =vol  +  products.getCurrentPrice();
     products.setCurrentPrice(value);
+        Products currentProduct=productsRepository.findById(id).get();
+        Greeting g=new Greeting(HtmlUtils.htmlEscape(vol+"")+" bid" );
+        g.setBidingProduct(currentProduct);
+        g.setWinner(user.getFirstName() +' '+ user.getLastName());
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        Date date = new Date();
+        g.setNow(formatter.format(date));
     productsRepository.save(products);
+        greetingRepository.save(g);
 return new RedirectView("/singleProduct/"+id);
 }
 
