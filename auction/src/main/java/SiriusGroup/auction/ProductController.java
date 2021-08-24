@@ -35,7 +35,7 @@ public class ProductController {
 //        Products products1 =  productsRepository.findAll();
 //        model.addAttribute("user",user);
         model.addAttribute("products", productsRepository.findAll());
-
+//        model.addAttribute("isWishlist",applicationUserRepository.findByUsername(p.getName()).isWishlist());
         return "product.html";
     }
 
@@ -61,8 +61,9 @@ public class ProductController {
 
 
         String fileName = StringUtils.cleanPath(productImageUrl.getOriginalFilename());
-        String uploadDir = "/Users/user/LTUC/auction/auction/src/main/resources/static/img" ;
+//        String uploadDir = "/Users/user/LTUC/auction/auction/src/main/resources/static/img" ;
 //        String uploadDir = "/Users/dawoodabuzahra/401/auction/auction/src/main/resources/static/img" ;
+        String uploadDir = "/Users/Khalil/ASAC/401mid/auction/auction/src/main/resources/static/img";
         String url = FileUploadUtil.saveFile(uploadDir, fileName, productImageUrl);
 
 
@@ -192,9 +193,10 @@ return new RedirectView("/singleProduct/"+id);
 
 
 
-    @PostMapping("/wish/{id}")
+    @GetMapping("/wish/{id}")
     public RedirectView followUser(Principal p,@PathVariable Long id){
         ApplicationUser getUser=applicationUserRepository.findByUsername(p.getName());
+        productsRepository.findById(id).get().setIsWished(true);
         Products addProduts=productsRepository.findById(id).get();
         getUser.addUserToWishlist(addProduts);
         applicationUserRepository.save(getUser);
@@ -202,7 +204,7 @@ return new RedirectView("/singleProduct/"+id);
     }
 
 
-    @PostMapping("/deleteWish/{id}")
+    @GetMapping("/deleteWish/{id}")
     public RedirectView unfollowUser(Principal p,@PathVariable Long id){
         ApplicationUser getUser=applicationUserRepository.findByUsername(p.getName());
         Products removeList=productsRepository.findById(id).get();
