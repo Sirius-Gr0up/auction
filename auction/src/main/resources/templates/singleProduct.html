@@ -102,10 +102,10 @@
               <th >History of bidding</th>
 
             <span  th:text="${product.getId()}" id="productId"></span>
-          <div class="greetings"></div>
+           <div class="greetings"></div>
             <div class="bid-row" th:each="bid : ${product.getBiding()}">
 
-            <div>
+            <div th:if="${product.getBiding().indexOf(bid)!=product.getBiding().size()-1}">
               <p th:text="${bid.content}"></p>
               <p th:text="${bid.winner}"></p>
               <p th:text="${bid.now}"></p>
