@@ -1,3 +1,4 @@
+
 package SiriusGroup.auction;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
