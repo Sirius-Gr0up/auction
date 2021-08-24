@@ -39,8 +39,12 @@ public class Products {
     ApplicationUser owner;
 
 
+
     @ManyToMany(mappedBy = "wishlist")
     private List<ApplicationUser> curUser;
+
+    @ManyToMany(mappedBy = "by")
+    private List<ApplicationUser> cur;
 
     @OneToMany(fetch=FetchType.EAGER,mappedBy = "bidingProduct", cascade = CascadeType.ALL)
     private List<Greeting> biding=new ArrayList<>();
@@ -185,4 +189,18 @@ public class Products {
     public void setCurUser(List<ApplicationUser> curUser) {
         this.curUser = curUser;
     }
+
+
+
+
+
+    public List<ApplicationUser> getCur() {
+
+        return cur;
+    }
+
+    public void setCur(List<ApplicationUser> cur) {
+        this.cur = cur;
+    }
 }
+

@@ -232,10 +232,22 @@ return new RedirectView("/singleProduct/"+id);
 
 
 
+    @GetMapping("/by/{id}")
+    public RedirectView follow(Principal p,@PathVariable Long id){
+        ApplicationUser getUser=applicationUserRepository.findByUsername(p.getName());
+//        productsRepository.findById(id).get().setIsWished(true);
+        Products addProduts=productsRepository.findById(id).get();
+        getUser.addUserToBy(addProduts);
+        applicationUserRepository.save(getUser);
+        return new RedirectView("/by");
+    }
 
+    @GetMapping ("/by")
+    public String getBy(Model m,Principal p){
+        m.addAttribute("UserInfo", applicationUserRepository.findById(applicationUserRepository.findByUsername(p.getName()).getId()).get());
 
-
-
+        return "by.html";
+    }
 
 
 
