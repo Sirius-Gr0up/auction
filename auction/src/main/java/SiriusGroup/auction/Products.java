@@ -167,14 +167,5 @@ public class Products {
 
     public void setBiding(List<Greeting> biding) {
         this.biding = biding;
-    }
-//    public boolean isIsWished() {
-//        return isWished;
-//    }
-//
-//    public void setIsWished(boolean isWished) {
-//        this.isWished = isWished;
-//
-//    }
-    }
 
+    }}
