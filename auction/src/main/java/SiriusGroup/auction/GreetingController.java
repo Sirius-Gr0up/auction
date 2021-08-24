@@ -12,6 +12,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.List;
 
 @Controller
 public class GreetingController {
@@ -30,14 +31,20 @@ public class GreetingController {
     public Greeting greeting(HelloMessage message,Principal p) throws Exception {
         Thread.sleep(1000); // simulated delay
           ApplicationUser user =applicationUserRepository.findByUsername(p.getName());
-          Greeting g=new Greeting(HtmlUtils.htmlEscape(message.getName())+" bid");
+          Products currentProduct=productsRepository.findById(message.getProductId()).get();
+          Greeting g=new Greeting(HtmlUtils.htmlEscape(message.getName())+" bid" );
+//        List <Greeting>glist=currentProduct.getBiding();
+        System.out.println("product name =============== "+ currentProduct.getBiding());
          g.setWinner(user.getFirstName() +' '+ user.getLastName());
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
         Date date = new Date();
         g.setNow(formatter.format(date));
-        Products currentProduct=productsRepository.findById(message.getProductId()).get();
+//        glist.add(g);
+//        currentProduct.setBiding(glist);
+        currentProduct.addbiding(g);
+        productsRepository.save(currentProduct);
+
        //g.setBidingProduct(currentProduct);
-        //currentProduct.addbiding(g);
         greetingRepository.save(g);
 //          if (!g.isParticipants(user)){
 //              g.addParticipants(user);
