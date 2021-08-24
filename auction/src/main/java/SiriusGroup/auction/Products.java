@@ -3,6 +3,7 @@ package SiriusGroup.auction;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -32,8 +33,12 @@ public class Products {
 
     @ManyToOne
     ApplicationUser owner;
-    @OneToMany(mappedBy = "bidingProduct")
-    private List<Greeting> biding;
+
+    @ManyToMany(mappedBy = "wishlist")
+    private List<ApplicationUser> curUser;
+
+    @OneToMany(fetch = FetchType.EAGER,mappedBy = "bidingProduct", cascade = CascadeType.ALL)
+    private List<Greeting> biding=new ArrayList<>();
 
     public Products(String dis, String productName, String productImageUrl, Date time, int minPrice, int maxPrice,String secondImage,String thirdImage, ApplicationUser owner) {
         this.dis = dis;
@@ -162,5 +167,17 @@ public class Products {
 
     public void setBiding(List<Greeting> biding) {
         this.biding = biding;
+    }
+    public void addbiding(Greeting g){
+        this.biding.add(g);
+    }
+
+    public List<ApplicationUser> getCurUser() {
+
+        return curUser;
+    }
+
+    public void setCurUser(List<ApplicationUser> curUser) {
+        this.curUser = curUser;
     }
 }

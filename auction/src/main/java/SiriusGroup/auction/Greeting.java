@@ -85,5 +85,5 @@ public class Greeting {
     public void setBidingProduct(Products bidingProduct) {
         this.bidingProduct = bidingProduct;
     }
-    
+
 }

@@ -35,7 +35,7 @@ public class ApplicationUser implements UserDetails {
     )
     private List<Products> wishlist = new ArrayList<>();
 
-    @OneToMany(mappedBy = "owner")
+    @OneToMany( fetch=FetchType.EAGER,mappedBy = "owner",cascade=CascadeType.ALL)
     List<Products> products;
 
     public ApplicationUser(String username, String password, String firstName, String lastName, String dateOfBirth, String bio, String imgUrl) {

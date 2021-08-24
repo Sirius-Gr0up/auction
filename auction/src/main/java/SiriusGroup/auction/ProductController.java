@@ -26,6 +26,9 @@ public class ProductController {
         @Autowired
         ProductsRepository productsRepository;
 
+        @Autowired
+        GreetingRepository greetingRepository;
+
     @GetMapping("/product" )
     public String getProduct(Principal p, Model model){
         model.addAttribute("UserInfo",applicationUserRepository.findById(applicationUserRepository.findByUsername(p.getName()).getId()).get());
@@ -153,11 +156,12 @@ public class ProductController {
     //mohammad
 
 @PostMapping("/addBid/{id}")
-public RedirectView addBid (@PathVariable Long id,@RequestParam int vol){
+public RedirectView addBid (@PathVariable Long id,@RequestParam int vol,Principal p){
+    ApplicationUser user =applicationUserRepository.findByUsername(p.getName());
     Products products=productsRepository.findById(id).get();
     int value =vol  +  products.getCurrentPrice();
     products.setCurrentPrice(value);
-productsRepository.save(products);
+    productsRepository.save(products);
 return new RedirectView("/singleProduct/"+id);
 }
 
