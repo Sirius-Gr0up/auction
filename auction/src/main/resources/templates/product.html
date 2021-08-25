@@ -19,26 +19,13 @@
     </div>
     <div class="all-container mb-5 pb-5">
         <div class="container">
-<!--            for each-->
 
-
-
-<!--            <div>-->
-<!--                <ul th:each="product : ${products}" >-->
-<!--                    <li class="list-group-item disabled">Post :<span th:text="${product.productName}"></span><br/>-->
-<!--                    <li class="list-group-item disabled">Time :<span th:text="${product.productImageUrl}"></span><br/>-->
-<!--                    <li class="list-group-item disabled">Post :<span th:text="${product.time}"></span><br/>-->
-<!--                    <li type="date" class="list-group-item disabled">Time :<span th:text="${product.minPrice}"></span><br/>-->
-<!--                    </li>-->
-<!--                    <br/>-->
-<!--                </ul>-->
-
-<!--            </div>-->
-        <div  class="row row-cols-3 ">
+        <div  class="row row-cols-4 ">
             <div th:each="product : ${products}" class="col mb-3">
-                <div class="card m-auto" style="width: 19rem;">
+                <div class="card m-auto" >
                     <div class="card-icon">
                         <img class="card-img-top" th:src="@{${product.productImageUrl}}" alt="Card image cap"/>
+                        <div class="fav">
 <!--                        wishlist div start-->
                         <div th:if="${product.owner.getId() !=UserInfo.getId()}">
                             <div th:if="${UserInfo.isWishlist(product)}">
@@ -55,25 +42,25 @@
                             </div>
                         </div>
 <!--                        wishlist div end-->
-
+                        </div>
                     </div>
 
                     <div class="card-body">
                         <h5 th:text="${product.getProductName()}"class="card-title"></h5>
                         <div class="price">
                             <div class="current-Bid">
-                                <i class="fa fa-gavel text-success" aria-hidden="true"></i>
+                                <i class="fa fa-gavel " aria-hidden="true"></i>
                                 <div class="text-price">
-                                    <p class="text-success">Start Price</p>
+                                    <p class="">Start Price</p>
                                     <p th:text="${product.minPrice} +' JOD' "></p>
                                 </div>
                             </div>
 
                             <div class="current-Bid " style="cursor: pointer;">
                                 <a  th:href="@{/by/{id} (id=${product.getId()})}">
-                                <i class="fas fa-hand-holding-usd text-danger"></i>
-                                <div class="text-price">
-                                    <p class="text-danger">Buy Now</p>
+                                <i class="fas fa-hand-holding-usd "></i>
+              <div class="text-price">
+                                    <p class="">Buy Now</p>
                                     <p th:text="${product.maxPrice}"></p>
                                 </div>
                                 </a>
@@ -83,7 +70,7 @@
 
                         <div type="date" th:text="${product.time}" class="card-timer d-none" ></div>
                         <div class="demo"></div>
-                        <a th:href="@{/singleProduct/{id} (id=${product.getId()})}" class="btn  btn-outline-info pink-btn mt-3">Bid Now</a>
+                        <a th:href="@{/singleProduct/{id} (id=${product.getId()})}" class="btn  btn-outline-info my-btn mt-3">Bid Now</a>
                     </div>
 
                 </div>
