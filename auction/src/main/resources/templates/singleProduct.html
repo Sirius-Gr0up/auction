@@ -13,7 +13,7 @@
   <script src="/webjars/jquery/jquery.min.js"></script>
   <script src="/webjars/sockjs-client/sockjs.min.js"></script>
   <script src="/webjars/stomp-websocket/stomp.min.js"></script>
-  <script src="/app.js"></script>
+
   <title>Document</title>
 </head>
 <body>
@@ -99,13 +99,17 @@
       <div class="row">
         <div class="col-md-9">
 
-              <th>History of bidding</th>
+              <th >History of bidding</th>
 
+            <span  th:text="${product.getId()}" id="productId"></span>
+           <div class="greetings"></div>
+            <div class="bid-row" th:each="bid : ${product.getBiding()}">
 
-            <div id="greetings" class="bid-row" th:each="bid : ${product.getBiding()}">
+            <div th:if="${product.getBiding().indexOf(bid)!=product.getBiding().size()-1}">
               <p th:text="${bid.content}"></p>
               <p th:text="${bid.winner}"></p>
               <p th:text="${bid.now}"></p>
+            </div>
             </div>
 
         </div>
@@ -124,7 +128,7 @@
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
 <script th:src="@{/js.js}"></script>
-
+<script  th:src="@{/app.js}" ></script>
 <script>
   let slider = document.getElementById("myRange");
   let output = document.getElementById("demoo");

@@ -1,5 +1,6 @@
 package SiriusGroup.auction;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.multipart.MultipartFile;
@@ -35,8 +36,22 @@ public class ApplicationUser implements UserDetails {
     )
     private List<Products> wishlist = new ArrayList<>();
 
-    @OneToMany(mappedBy = "owner")
+    @OneToMany( fetch=FetchType.EAGER,mappedBy = "owner",cascade=CascadeType.ALL)
+    @JsonIgnore
     List<Products> products;
+
+
+
+    @ManyToMany
+    @JoinTable(name ="by",
+            joinColumns= { @JoinColumn(name = "user_id",referencedColumnName = "id", nullable = false)},
+            inverseJoinColumns= {@JoinColumn(name = "Products_id", referencedColumnName = "id", nullable = false)}
+    )
+    private List<Products> by = new ArrayList<>();
+
+    @OneToMany( fetch=FetchType.EAGER,mappedBy = "owner",cascade=CascadeType.ALL)
+    @JsonIgnore
+    List<Products> bay;
 
     public ApplicationUser(String username, String password, String firstName, String lastName, String dateOfBirth, String bio, String imgUrl) {
         this.username = username;
@@ -127,6 +142,21 @@ public class ApplicationUser implements UserDetails {
     }
     public Boolean isWishlist(Products products){
         return this.wishlist.contains(products);
+    }
+
+
+    public void setBy(List<Products> by) {
+        this.by = by;
+    }
+
+    public void addUserToBy(Products bay){
+        this.by.add(bay);
+    }
+    public void removeUserFromBy(Products bay){
+        this.by.remove(bay);
+    }
+    public Boolean isBy(Products bay){
+        return this.by.contains(bay);
     }
 
     @Override

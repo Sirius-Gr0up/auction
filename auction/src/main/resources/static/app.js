@@ -17,6 +17,7 @@ stompClient = Stomp.over(socket);
 stompClient.connect({}, function (frame) {
     setConnected(true);
     console.log('Connected: ' + frame);
+
     stompClient.subscribe('/topic/greetings', function (greeting) {
         showGreeting(JSON.parse(greeting.body).content);
         showGreeting(JSON.parse(greeting.body).winner);
@@ -44,11 +45,18 @@ stompClient.connect({}, function (frame) {
 // }
 
 function sendName() {
-    stompClient.send("/app/hello", {}, JSON.stringify({'name': $("#myRange").val()}));
+    let poroduct =document.getElementById('productId');
+    stompClient.send("/app/hello", {}, JSON.stringify({'name': $("#myRange").val(),
+                                                             'productId': poroduct.textContent}));
+    // stompClient.send("/app/hello", {}, JSON.stringify({'productId': poroduct.textContent}));
+     // console.log($("#productId").textContent);
 }
 
 function showGreeting(message) {
-    $("#greetings").append("<p>" + message + "</p>");
+
+    // console.log(poroduct.textContent);
+
+    $(".greetings")[0].append("<p>" + message + "</p>");
 }
 
 // $(function () {
@@ -65,5 +73,7 @@ $(function () {
     // });
     // $( "#connect" ).click(function() { connect(); });
     // $( "#disconnect" ).click(function() { disconnect(); });
-    $( "#send" ).click(function() { sendName(); });
+    $( "#send" ).click(function() {
+
+        sendName(); });
 });

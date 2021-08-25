@@ -39,14 +39,22 @@
                 <div class="card m-auto" style="width: 19rem;">
                     <div class="card-icon">
                         <img class="card-img-top" th:src="@{${product.productImageUrl}}" alt="Card image cap"/>
-
-<!--                        <a th:if="${product.isIsWished()}">-->
-                            <a th:href="@{/wish/{id}(id=${product.getId()})}" ><i class="fas fa-heart"></i></a>
-<!--                        </a>-->
-<!--                        <a th:unless="${product.isIsWished()}">-->
-                            <a th:href="@{/deleteWish/{id}(id=${product.getId()})}" ><i class="far fa-heart"></i></a>
-<!--                        </a>-->
-
+<!--                        wishlist div start-->
+                        <div th:if="${product.owner.getId() !=UserInfo.getId()}">
+                            <div th:if="${UserInfo.isWishlist(product)}">
+                                <!--                            <a th:href="@{/wish/{id}(id=${product.getId()})}" ><i class="fas fa-heart"></i></a>-->
+                                <form action="#" th:action="@{/deleteWish/{id}(id=${product.getId()})}" method="get" >
+                                    <button type="submit" class="btn-wishlist" title="Remove from wishlist" ><i class="fas fa-heart"></i></button>
+                                </form>
+                            </div>
+                            <div th:unless="${UserInfo.isWishlist(product)}">
+                                <!--                            <a th:href="@{/deleteWish/{id}(id=${product.getId()})}" ><i class="far fa-heart"></i></a>-->
+                                <form action="#" th:action="@{/wish/{id}(id=${product.getId()})}" method="get" >
+                                    <button type="submit" class="btn-wishlist" title="Add to wishlist" ><i class="far fa-heart"></i></button>
+                                </form>
+                            </div>
+                        </div>
+<!--                        wishlist div end-->
 
                     </div>
 
@@ -60,13 +68,17 @@
                                     <p th:text="${product.minPrice} +' JOD' "></p>
                                 </div>
                             </div>
-                            <div class="current-Bid ">
+
+                            <div class="current-Bid " style="cursor: pointer;">
+                                <a  th:href="@{/by/{id} (id=${product.getId()})}">
                                 <i class="fas fa-hand-holding-usd text-danger"></i>
                                 <div class="text-price">
                                     <p class="text-danger">Buy Now</p>
                                     <p th:text="${product.maxPrice}"></p>
                                 </div>
+                                </a>
                             </div>
+
                         </div>
 
                         <div type="date" th:text="${product.time}" class="card-timer d-none" ></div>

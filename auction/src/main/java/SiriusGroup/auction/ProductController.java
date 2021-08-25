@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.view.RedirectView;
+import org.springframework.web.util.HtmlUtils;
 
+import javax.transaction.Transactional;
 import java.io.IOException;
 import java.security.Principal;
 import java.text.ParseException;
@@ -19,12 +21,16 @@ import java.util.Date;
 import java.util.List;
 
 @Controller
+
 public class ProductController {
 
         @Autowired
         ApplicationUserRepository applicationUserRepository;
         @Autowired
         ProductsRepository productsRepository;
+
+        @Autowired
+        GreetingRepository greetingRepository;
 
     @GetMapping("/product" )
     public String getProduct(Principal p, Model model){
@@ -62,8 +68,8 @@ public class ProductController {
 
         String fileName = StringUtils.cleanPath(productImageUrl.getOriginalFilename());
 //        String uploadDir = "/Users/user/LTUC/auction/auction/src/main/resources/static/img" ;
-//        String uploadDir = "/Users/dawoodabuzahra/401/auction/auction/src/main/resources/static/img" ;
-        String uploadDir = "/Users/Khalil/ASAC/401mid/auction/auction/src/main/resources/static/img";
+        String uploadDir = "/Users/dawoodabuzahra/401/auction/auction/src/main/resources/static/img" ;
+//        String uploadDir = "/Users/Khalil/ASAC/auction/auction/src/main/resources/static/img";
         String url = FileUploadUtil.saveFile(uploadDir, fileName, productImageUrl);
 
 
@@ -88,10 +94,12 @@ public class ProductController {
         productsRepository.save(products);
         return new RedirectView ("/product");
     }
+
     @GetMapping("/singleProduct/{id}")
     public String getSingleProduct(@PathVariable Long id,Model m,Principal p){
 
         Products product=productsRepository.findById(id).get();
+
         m.addAttribute("UserInfo", applicationUserRepository.findById(applicationUserRepository.findByUsername(p.getName()).getId()).get());
         m.addAttribute("product",product);
 
@@ -152,13 +160,22 @@ public class ProductController {
     ////////////////////////////////////////
 
     //mohammad
-
+    @Transactional
 @PostMapping("/addBid/{id}")
-public RedirectView addBid (@PathVariable Long id,@RequestParam int vol){
+public RedirectView addBid (@PathVariable Long id,@RequestParam int vol,Principal p){
+    ApplicationUser user =applicationUserRepository.findByUsername(p.getName());
     Products products=productsRepository.findById(id).get();
     int value =vol  +  products.getCurrentPrice();
     products.setCurrentPrice(value);
-productsRepository.save(products);
+        Products currentProduct=productsRepository.findById(id).get();
+        Greeting g=new Greeting(HtmlUtils.htmlEscape(vol+"")+" bid" );
+        g.setBidingProduct(currentProduct);
+        g.setWinner(user.getFirstName() +' '+ user.getLastName());
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        Date date = new Date();
+        g.setNow(formatter.format(date));
+    productsRepository.save(products);
+        greetingRepository.save(g);
 return new RedirectView("/singleProduct/"+id);
 }
 
@@ -196,7 +213,7 @@ return new RedirectView("/singleProduct/"+id);
     @GetMapping("/wish/{id}")
     public RedirectView followUser(Principal p,@PathVariable Long id){
         ApplicationUser getUser=applicationUserRepository.findByUsername(p.getName());
-        productsRepository.findById(id).get().setIsWished(true);
+//        productsRepository.findById(id).get().setIsWished(true);
         Products addProduts=productsRepository.findById(id).get();
         getUser.addUserToWishlist(addProduts);
         applicationUserRepository.save(getUser);
@@ -215,10 +232,22 @@ return new RedirectView("/singleProduct/"+id);
 
 
 
+    @GetMapping("/by/{id}")
+    public RedirectView follow(Principal p,@PathVariable Long id){
+        ApplicationUser getUser=applicationUserRepository.findByUsername(p.getName());
+//        productsRepository.findById(id).get().setIsWished(true);
+        Products addProduts=productsRepository.findById(id).get();
+        getUser.addUserToBy(addProduts);
+        applicationUserRepository.save(getUser);
+        return new RedirectView("/by");
+    }
 
+    @GetMapping ("/by")
+    public String getBy(Model m,Principal p){
+        m.addAttribute("UserInfo", applicationUserRepository.findById(applicationUserRepository.findByUsername(p.getName()).getId()).get());
 
-
-
+        return "by.html";
+    }
 
 
 

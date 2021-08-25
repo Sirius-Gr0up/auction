@@ -1,10 +1,15 @@
+
 package SiriusGroup.auction;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.context.annotation.Lazy;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
 
 @Entity
 public class Products {
@@ -28,13 +33,21 @@ public class Products {
     private int minPrice;
     private int maxPrice;
     private int currentPrice;
-    private boolean isWished=false;
 
 
     @ManyToOne
     ApplicationUser owner;
-    @OneToMany(mappedBy = "bidingProduct")
-    private List<Greeting> biding;
+
+
+
+    @ManyToMany(mappedBy = "wishlist")
+    private List<ApplicationUser> curUser;
+
+    @ManyToMany(mappedBy = "by")
+    private List<ApplicationUser> cur;
+
+    @OneToMany(fetch=FetchType.EAGER,mappedBy = "bidingProduct", cascade = CascadeType.ALL)
+    private List<Greeting> biding=new ArrayList<>();
 
     public Products(String dis, String productName, String productImageUrl, Date time, int minPrice, int maxPrice,String secondImage,String thirdImage, ApplicationUser owner) {
         this.dis = dis;
@@ -157,7 +170,6 @@ public class Products {
         this.minPrice = minPrice;
     }
 
-
     public List<Greeting> getBiding() {
         return biding;
     }
@@ -165,12 +177,34 @@ public class Products {
     public void setBiding(List<Greeting> biding) {
         this.biding = biding;
     }
-    public boolean isIsWished() {
-        return isWished;
+
+
+
+    public void addbiding(Greeting g){
+        this.biding.add(g);
     }
 
-    public void setIsWished(boolean isWished) {
-        this.isWished = isWished;
+    public List<ApplicationUser> getCurUser() {
 
+        return curUser;
+    }
+
+    public void setCurUser(List<ApplicationUser> curUser) {
+        this.curUser = curUser;
+
+    }
+
+
+
+
+
+    public List<ApplicationUser> getCur() {
+
+        return cur;
+    }
+
+    public void setCur(List<ApplicationUser> cur) {
+        this.cur = cur;
     }
 }
+
