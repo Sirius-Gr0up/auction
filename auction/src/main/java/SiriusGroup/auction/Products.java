@@ -177,6 +177,9 @@ public class Products {
     public void setBiding(List<Greeting> biding) {
         this.biding = biding;
     }
+
+
+
     public void addbiding(Greeting g){
         this.biding.add(g);
     }
@@ -188,6 +191,7 @@ public class Products {
 
     public void setCurUser(List<ApplicationUser> curUser) {
         this.curUser = curUser;
+
     }
 
 
