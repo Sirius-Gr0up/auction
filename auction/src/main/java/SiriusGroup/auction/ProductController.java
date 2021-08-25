@@ -75,9 +75,9 @@ public class ProductController {
 
 
         String fileName = StringUtils.cleanPath(productImageUrl.getOriginalFilename());
-        String uploadDir = "/Users/user/LTUC/auction/auction/src/main/resources/static/img" ;
+//        String uploadDir = "/Users/user/LTUC/auction/auction/src/main/resources/static/img" ;
 //        String uploadDir = "/Users/dawoodabuzahra/401/auction/auction/src/main/resources/static/img" ;
-//        String uploadDir = "/Users/Khalil/ASAC/auction/auction/src/main/resources/static/img";
+        String uploadDir = "/Users/Khalil/ASAC/auction/auction/src/main/resources/static/img";
         String url = FileUploadUtil.saveFile(uploadDir, fileName, productImageUrl);
 
 
@@ -276,9 +276,9 @@ return new RedirectView("/singleProduct/"+id);
 
     @GetMapping("/myProducts/{id}")
     public RedirectView deleteProduct(@PathVariable Long id) {
+        System.out.println(".......my product id:"+id);
         Products p1=productsRepository.findById(id).get();
         productsRepository.deleteById(p1.getId());
-
         return new RedirectView("/myProducts");
     }
 
