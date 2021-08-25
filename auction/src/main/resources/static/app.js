@@ -55,8 +55,15 @@ function sendName() {
 function showGreeting(message) {
 
     // console.log(poroduct.textContent);
+    var node = document.createElement("div");
+    node.classList.add("col");
+    var textnode = document.createTextNode(message);
+    node.appendChild(textnode);
+    let greetings=document.getElementsByClassName("greetings")[0];
+    greetings.appendChild(node);
 
-    $(".greetings")[0].append("<p>" + message + "</p>");
+
+    // $(".greetings")[0].append('<p>'+message+'</p>');
 }
 
 // $(function () {

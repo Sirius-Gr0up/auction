@@ -1,5 +1,5 @@
 $(window).scroll( function() {
-    if($(window).scrollTop() >= 100)
+    if($(window).scrollTop() >= 30)
     {
         $('.navbar').addClass("scroll-nav");
     }

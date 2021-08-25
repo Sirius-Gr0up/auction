@@ -34,12 +34,29 @@
       <!--                </ul>-->
 
       <!--            </div>-->
-      <div  class="row row-cols-3 ">
+      <div  class="row row-cols-4 ">
         <div th:each="product : ${UserInfo.getWishlist()}" class="col mb-3">
-          <div class="card m-auto" style="width: 19rem;">
+          <div class="card m-auto" >
             <div class="card-icon">
               <img class="card-img-top" th:src="@{${product.productImageUrl}}" alt="Card image cap"/>
-              <i class="fa fa-gavel" aria-hidden="true"></i>
+              <div class="fav">
+                <!--                        wishlist div start-->
+                <div th:if="${product.owner.getId() !=UserInfo.getId()}">
+                  <div th:if="${UserInfo.isWishlist(product)}">
+                    <!--                            <a th:href="@{/wish/{id}(id=${product.getId()})}" ><i class="fas fa-heart"></i></a>-->
+                    <form action="#" th:action="@{/deleteWish/{id}(id=${product.getId()})}" method="get" >
+                      <button type="submit" class="btn-wishlist" title="Remove from wishlist" ><i class="fas fa-heart"></i></button>
+                    </form>
+                  </div>
+                  <div th:unless="${UserInfo.isWishlist(product)}">
+                    <!--                            <a th:href="@{/deleteWish/{id}(id=${product.getId()})}" ><i class="far fa-heart"></i></a>-->
+                    <form action="#" th:action="@{/wish/{id}(id=${product.getId()})}" method="get" >
+                      <button type="submit" class="btn-wishlist" title="Add to wishlist" ><i class="far fa-heart"></i></button>
+                    </form>
+                  </div>
+                </div>
+                <!--                        wishlist div end-->
+              </div>
             </div>
             <div class="card-body">
               <h5 th:text="${product.getProductName()}"class="card-title"></h5>
@@ -61,7 +78,7 @@
               </div>
               <div type="date" th:text="${product.time}" class="card-timer d-none" ></div>
               <div class="demo"></div>
-              <a href="#" class="btn  btn-outline-info pink-btn">Go somewhere</a>
+              <a th:href="@{/singleProduct/{id} (id=${product.getId()})}" class="btn  btn-outline-info my-btn mt-3">Bid Now</a>
             </div>
 
           </div>

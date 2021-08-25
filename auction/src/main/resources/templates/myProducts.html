@@ -16,48 +16,41 @@
 <!-- end navbar -->
 <div class="profile product">
     <div class="background-img-product">
+        <h1 class="header-product-text"></h1>
     </div>
     <div class="all-container mb-5 pb-5">
         <div class="container">
 
-            <div  class="row row-cols-3 ">
+            <div  class="row row-cols-4 ">
                 <div th:each="product : ${products}" class="col mb-3">
-                    <div class="card m-auto" style="width: 19rem;">
+                    <div class="card m-auto" >
                         <div class="card-icon">
                             <img class="card-img-top" th:src="@{${product.productImageUrl}}" alt="Card image cap"/>
 
-
-
                         </div>
                         <div class="card-body">
-                            <div class="icon-remove">
-                                <a th:href="@{/myProducts/{id}(id=${product.getId()})}">
+
+                            <div class="remove-title">
+                                <h5 th:text="${product.getProductName()}"class="card-title"></h5>
+                                <a th:href="@{/myProducts/{id}(id=${product.getId()})}" class="remove">
                                     <i class="fas fa-trash-alt"></i>
                                     <p>Remove</p>
                                 </a>
-                                <a>
-                                    <i class="fas fa-edit"></i>
-                                    <p>Edit</p>
-                                </a>
-
                             </div>
-                            <h5 th:text="${product.getProductName()}"class="card-title"></h5>
-<!--                            <form th:action="@{/myProducts/{id}(id=${product.getId()})}" method="get">-->
-<!--                                <button type="submit" class="btn  btn-outline-info my-btn">Delete</button>-->
-<!--                            </form>-->
+
                             <p class="dis" th:text="${product.dis}"></p>
                             <div class="price">
                                 <div class="current-Bid">
-                                    <i class="fa fa-gavel text-success" aria-hidden="true"></i>
+                                    <i class="fa fa-gavel " aria-hidden="true"></i>
                                     <div class="text-price">
-                                        <p class="text-success">Start Price</p>
+                                        <p class="">Start Price</p>
                                         <p th:text="${product.minPrice} +' JOD' "></p>
                                     </div>
                                 </div>
                                 <div class="current-Bid ">
-                                    <i class="fas fa-hand-holding-usd text-danger"></i>
+                                    <i class="fas fa-hand-holding-usd "></i>
                                     <div class="text-price">
-                                        <p class="text-danger">Buy Now</p>
+                                        <p class="">Buy Now</p>
                                         <p th:text="${product.maxPrice}"></p>
                                     </div>
                                 </div>
@@ -65,7 +58,7 @@
                             <div type="date" th:text="${product.time}" class="card-timer d-none" ></div>
                             <div class="demo"></div>
 
-                            <a href="#" class="btn  btn-outline-info pink-btn">Go somewhere</a>
+                            <a th:href="@{/singleProduct/{id} (id=${product.getId()})}" class="btn  btn-outline-info my-btn mt-3">Bid Now</a>
                         </div>
 
                     </div>

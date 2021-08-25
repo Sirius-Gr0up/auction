@@ -26,16 +26,25 @@
             <h1 th:text="${UserInfo.firstName} + ' '+${UserInfo.lastName}"></h1>
             <h2 th:text="${UserInfo.username}"></h2>
             <p th:text="${UserInfo.bio}"></p>
-          </div>
-          <div class="left-side">
-<!--            <h1>Add new product </h1>-->
-            <div class="addedProduct" >  <a href="#" data-toggle="modal" data-target="#exampleModal1" ><h1>Add new product </h1><i class="fas fa-plus"></i> </a> </div>
-
-          </div>
-          <div class="left-side">
-            <!--            <h1>My Products </h1>-->
-            <div class="addedProduct" >  <a href="/myProducts"  ><h1> My Products </h1><i class="fas fa-plus"></i> </a> </div>
-
+           <div class="profile-nav">
+             <ul class="nav flex-column">
+               <li class="nav-item">
+                 <a class="nav-link active" href="#" data-toggle="modal" data-target="#exampleModal1" >
+                   <i class="fas fa-plus"></i>Add new product
+                 </a>
+               </li>
+               <li class="nav-item">
+                 <a class="nav-link" href="/myProducts">
+                   <i class="fas fa-box-open"></i>My Products
+                 </a>
+               </li>
+               <li class="nav-item">
+                 <a class="nav-link" href="/wishlist">
+                   <i class="fas fa-heart"></i>Wishlist
+                 </a>
+               </li>
+             </ul>
+           </div>
           </div>
         </div>
         <div class="col-8 h-100">
@@ -89,28 +98,36 @@
       <div class="modal-body">
         <form  th:action="@{/editUser}" method="post"
               enctype="multipart/form-data">
-          <div class="mb-3">
-            <label for="username" class="form-label">Email</label>
-            <input type="email" name="username" class="form-control" id="username" aria-describedby="emailHelp">
+          <div class="row">
+            <div class="col mb-3">
+              <label for="username" class="form-label">Email</label>
+              <input type="email" name="username" class="form-control" id="username" aria-describedby="emailHelp">
+            </div>
+            <div class="col mb-3">
+              <label for="password" class="form-label">Password</label>
+              <input name="password" type="password" class="form-control" id="password">
+            </div>
           </div>
+          <div class="row">
+            <div class="col mb-3">
+              <label for="firstName" class="form-label">firstName</label>
+              <input type="text" name="firstName" class="form-control"  th:value="${UserInfo.firstName}" id="firstName" aria-describedby="emailHelp">
+            </div>
+            <div class="col mb-3">
+              <label for="lastName" class="form-label">lastName</label>
+              <input type="text" name="lastName" class="form-control" th:value="${UserInfo.lastName}" id="lastName" aria-describedby="emailHelp">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col mb-3">
+              <label for="dateOfBirth" class="form-label">dateOfBirth</label>
+              <input type="date" name="dateOfBirth" class="form-control" id="dateOfBirth" th:value="${UserInfo.dateOfBirth}" aria-describedby="emailHelp">
+            </div>
+            <div class="col mb-3">
+              <label for="imageUrl" class="form-label">imageUrl</label>
+              <input type="file" name="imageUrl" class="form-control" id="imageUrl" th:value="${UserInfo.imgUrl}" aria-describedby="emailHelp">
+            </div>
 
-          <div class="mb-3">
-            <label for="password" class="form-label">Password</label>
-            <input name="password" type="password" class="form-control" id="password">
-          </div>
-          <div class="mb-3">
-            <label for="firstName" class="form-label">firstName</label>
-            <input type="text" name="firstName" class="form-control"  th:value="${UserInfo.firstName}" id="firstName" aria-describedby="emailHelp">
-          </div>
-
-          <div class="mb-3">
-            <label for="lastName" class="form-label">lastName</label>
-            <input type="text" name="lastName" class="form-control" th:value="${UserInfo.lastName}" id="lastName" aria-describedby="emailHelp">
-          </div>
-
-          <div class="mb-3">
-            <label for="dateOfBirth" class="form-label">dateOfBirth</label>
-            <input type="date" name="dateOfBirth" class="form-control" id="dateOfBirth" th:value="${UserInfo.dateOfBirth}" aria-describedby="emailHelp">
           </div>
 
           <div class="mb-3">
@@ -119,16 +136,7 @@
           </div>
 
 
-          <div class="mb-3">
-            <label for="imageUrl" class="form-label">imageUrl</label>
-            <input type="file" name="imageUrl" class="form-control" id="imageUrl" th:value="${UserInfo.imgUrl}" aria-describedby="emailHelp">
-          </div>
-
-
-
-          <div class="modal-footer">
             <button type="submit" class="btn  btn-outline-info my-btn">Submit</button>
-          </div>
         </form>
       </div>
 
@@ -150,34 +158,32 @@
 
         <form th:action="@{/product/{id}(id=${UserInfo.getId()})}" method="post"
               enctype="multipart/form-data">
-<!--          <p><input type='hidden' name='userId' th:value="${userId}"></p>-->
-          <div class="mb-3">
-            <label for="productName" class="form-label">Product Name</label>
-            <input type="text" name="productName" class="form-control" id="productName" aria-describedby="emailHelp">
+          <div class="row">
+            <div class="col mb-3">
+              <label for="productName" class="form-label">Product Name</label>
+              <input type="text" name="productName" class="form-control" id="productName" aria-describedby="emailHelp">
+            </div>
+            <div class="col mb-3">
+              <label for="dis" class="form-label">Description</label>
+              <input type="text" name="dis" class="form-control" id="dis" aria-describedby="emailHelp">
+            </div>
           </div>
-          <div class="mb-3">
-            <label for="dis" class="form-label">Description</label>
-            <input type="text" name="dis" class="form-control" id="dis" aria-describedby="emailHelp">
+          <div class="row">
+
+            <div class="col mb-3">
+              <label for="productImageUrl" class="form-label">Product Image</label>
+              <input type="file" name="productImageUrl" class="form-control" id="productImageUrl" aria-describedby="emailHelp">
+            </div>
+            <div class="col mb-3">
+              <label for="secondImage" class="form-label">Second Image</label>
+              <input type="file" name="secondImage" class="form-control" id="secondImage" aria-describedby="emailHelp">
+            </div>
+
+            <div class="col mb-3">
+              <label for="thirdImage" class="form-label">Third Image</label>
+              <input type="file" name="thirdImage" class="form-control" id="thirdImage" aria-describedby="emailHelp">
+            </div>
           </div>
-          <div class="mb-3">
-            <label for="productImageUrl" class="form-label">Product Image</label>
-            <input type="file" name="productImageUrl" class="form-control" id="productImageUrl" aria-describedby="emailHelp">
-          </div>
-
-
-
-          <div class="mb-3">
-            <label for="secondImage" class="form-label">Second Image</label>
-            <input type="file" name="secondImage" class="form-control" id="secondImage" aria-describedby="emailHelp">
-          </div>
-
-
-
-          <div class="mb-3">
-            <label for="thirdImage" class="form-label">Third Image</label>
-            <input type="file" name="thirdImage" class="form-control" id="thirdImage" aria-describedby="emailHelp">
-          </div>
-
 
           <div class="mb-3">
             <label for="time" class="form-label">End Time</label>
@@ -196,12 +202,7 @@
           </div>
 
 
-<!--          <p>product Name <input type="text" field="*{productName}"  name="productName" /></p>-->
-<!--          <p> product Image<input type="productImageUrl" field="*{productImageUrl}" name="productImageUrl" /></p>-->
-<!--          <p> time <input type="date"  field="*{time}" name="time" /></p>-->
-<!--          <p> minPrice(in JOD)<input type="text" field="*{minPrice}" name="minPrice" /></p>-->
-
-          <input class="btn pink-btn" type="submit" value="submit">
+          <input class="btn my-btn" type="submit" value="submit">
         </form>
       </div>
 

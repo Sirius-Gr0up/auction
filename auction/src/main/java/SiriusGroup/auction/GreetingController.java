@@ -34,7 +34,7 @@ public class GreetingController {
         Thread.sleep(1000); // simulated delay
           ApplicationUser user =applicationUserRepository.findByUsername(p.getName());
           Products currentProduct=productsRepository.findById(message.getProductId()).get();
-          Greeting g=new Greeting(HtmlUtils.htmlEscape(message.getName())+" bid" );
+          Greeting g=new Greeting(HtmlUtils.htmlEscape(message.getName())+" JOD" );
 //        List <Greeting>glist=currentProduct.getBiding();
 //        System.out.println("product name =============== "+ g.getBidingProduct().getProductName());
          g.setWinner(user.getFirstName() +' '+ user.getLastName());

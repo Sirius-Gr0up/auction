@@ -13,7 +13,7 @@
   <script src="/webjars/jquery/jquery.min.js"></script>
   <script src="/webjars/sockjs-client/sockjs.min.js"></script>
   <script src="/webjars/stomp-websocket/stomp.min.js"></script>
-
+  <script  th:src="@{/app.js}" ></script>
   <title>Document</title>
 </head>
 <body>
@@ -23,7 +23,7 @@
 <div class="profile product">
   <div class="background-img-product">
   </div>
-  <div class="all-container mb-5 pb-5">
+  <div class="all-container mb-5 pb-5 single-product">
     <div class="container">
       <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style="width: 75%;
     margin: auto;">
@@ -55,9 +55,9 @@
 <!--      <div class="box-img">-->
 <!--        <img th:src="@{${product.productImageUrl}}"/>-->
 <!--      </div>-->
-      <div class="row ps-5 pe-5 pt-5 pb-5">
+      <div class="row pt-5 pb-5 mt-5">
         <div class="col">
-          <div class="header-product pt-5 pb-3">
+          <div class="header-product pb-3">
             <h1 th:text="${product.productName}"></h1>
             <hr>
             <p th:text="${product.dis}"></p>
@@ -72,43 +72,62 @@
               <p th:text="${product.minPrice} + 'JOD'"></p>
             </div>
             <div class="product-box-row">
-              <p>Max Bid Increment</p>
+              <p>Min Bid Increment</p>
               <p th:text="${product.minPrice}*0.20 + 'JOD'"></p>
             </div>
           </div>
         </div>
-        <div class="col-3 countdown">
-          <h1 class="text-center text-danger">End After</h1>
-          <div type="date" th:text="${product.time}" class="card-timer d-none" ></div>
-          <div class="demo"></div>
-        </div>
+        <div class="col-3 ">
+          <div class="countdown">
+            <h1 class="text-center text-danger">End After</h1>
+            <div type="date" th:text="${product.time}" class="card-timer d-none" ></div>
+            <div class="demo"></div>
+          </div>
 
-      </div>
-      <div class="row pt-3 pb-3">
-        <div class="col-9 bid-now">
-          <img th:src="@{/img/14.png}">
-<!--          th:action="@{/addBid/{id}(id=${product.id})}"-->
-          <form th:action="@{/addBid/{id}(id=${product.id})}" method="post">
-            <label th:text="'Minimum Bid ' + ${product.minPrice}*0.20 + ' JOD'  " for="myRange">Volume (between 0 and 50):</label>
-           <p>Value : <span id="demoo"></span></p>
-            <input type="range" class="slider" id="myRange" name="vol" th:min="${product.minPrice}*0.20" th:max="${product.maxPrice}">
-            <input type="submit" class="btn pink-btn" value="submit Bid" id="send">
+          <form th:action="@{/addBid/{id}(id=${product.id})}" method="post" class="bid-form">
+            <div class="mb-3">
+              <label th:text="'Minimum Bid ' + ${product.minPrice}*0.20 + ' JOD'  " for="myRange"></label>
+              <p>Value : <span id="demoo"></span></p>
+              <input type="range" class="slider" id="myRange" name="vol" th:min="${product.minPrice}*0.20" th:max="${product.maxPrice}">
+            </div>
+            <div class="mb-3">
+              <input type="submit" class="btn my-btn" value="submit Bid" id="send">
+            </div>
+
+
           </form>
         </div>
+
       </div>
+<!--      <div class="row pt-3 pb-3">-->
+<!--        <div class="col-9 bid-now">-->
+<!--          <img th:src="@{/img/14.png}">-->
+<!--&lt;!&ndash;          th:action="@{/addBid/{id}(id=${product.id})}"&ndash;&gt;-->
+<!--          <form th:action="@{/addBid/{id}(id=${product.id})}" method="post">-->
+<!--            <label th:text="'Minimum Bid ' + ${product.minPrice}*0.20 + ' JOD'  " for="myRange"></label>-->
+<!--           <p>Value : <span id="demoo"></span></p>-->
+<!--            <input type="range" class="slider" id="myRange" name="vol" th:min="${product.minPrice}*0.20" th:max="${product.maxPrice}">-->
+<!--            <input type="submit" class="btn my-btn" value="submit Bid" id="send">-->
+<!--          </form>-->
+<!--        </div>-->
+<!--      </div>-->
       <div class="row">
         <div class="col-md-9">
-
-              <th >History of bidding</th>
-
+          <div class="header-product pb-3">
+            <h1>History of bidding</h1>
+            <hr>
+          </div>
             <span  th:text="${product.getId()}" id="productId"></span>
-           <div class="greetings"></div>
-            <div class="bid-row" th:each="bid : ${product.getBiding()}">
+          <div>
+            <div class="row row-cols-3 greetings"></div>
+          </div>
 
-            <div th:if="${product.getBiding().indexOf(bid)!=product.getBiding().size()-1}">
-              <p th:text="${bid.content}"></p>
-              <p th:text="${bid.winner}"></p>
-              <p th:text="${bid.now}"></p>
+            <div class="" th:each="bid : ${product.getBiding()}">
+
+            <div th:if="${product.getBiding().indexOf(bid)!=product.getBiding().size()-1}" class="row row-cols-3 bid-row">
+              <div class="col" th:text="${bid.content}"></div>
+              <div class="col" th:text="${bid.winner}"></div>
+              <div class="col" th:text="${bid.now}"></div>
             </div>
             </div>
 
@@ -128,7 +147,7 @@
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
 <script th:src="@{/js.js}"></script>
-<script  th:src="@{/app.js}" ></script>
+
 <script>
   let slider = document.getElementById("myRange");
   let output = document.getElementById("demoo");
