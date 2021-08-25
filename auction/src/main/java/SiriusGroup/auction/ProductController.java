@@ -1,13 +1,13 @@
 package SiriusGroup.auction;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.view.RedirectView;
 import org.springframework.web.util.HtmlUtils;
@@ -42,7 +42,12 @@ public class ProductController {
 //        model.addAttribute("user",user);
         model.addAttribute("products", productsRepository.findAll());
 //        model.addAttribute("isWishlist",applicationUserRepository.findByUsername(p.getName()).isWishlist());
-        return "product.html";
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication == null || AnonymousAuthenticationToken.class.isAssignableFrom(authentication.getClass()))
+            return "login.html";
+        else
+            return "product.html";
+
     }
 
     @GetMapping("/pro")
@@ -68,8 +73,9 @@ public class ProductController {
 
         String fileName = StringUtils.cleanPath(productImageUrl.getOriginalFilename());
 //        String uploadDir = "/Users/user/LTUC/auction/auction/src/main/resources/static/img" ;
-        String uploadDir = "/Users/dawoodabuzahra/401/auction/auction/src/main/resources/static/img" ;
+//        String uploadDir = "/Users/dawoodabuzahra/401/auction/auction/src/main/resources/static/img" ;
 //        String uploadDir = "/Users/Khalil/ASAC/auction/auction/src/main/resources/static/img";
+        String uploadDir = "Users/S4C/auction/auction/src/main/resources/static/img";
         String url = FileUploadUtil.saveFile(uploadDir, fileName, productImageUrl);
 
 
@@ -168,7 +174,7 @@ public RedirectView addBid (@PathVariable Long id,@RequestParam int vol,Principa
     int value =vol  +  products.getCurrentPrice();
     products.setCurrentPrice(value);
         Products currentProduct=productsRepository.findById(id).get();
-        Greeting g=new Greeting(HtmlUtils.htmlEscape(vol+"")+" bid" );
+        Greeting g=new Greeting(HtmlUtils.htmlEscape(vol+"")+" JOD" );
         g.setBidingProduct(currentProduct);
         g.setWinner(user.getFirstName() +' '+ user.getLastName());
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
@@ -205,11 +211,6 @@ return new RedirectView("/singleProduct/"+id);
         return "wishlist.html";
     }
 
-
-
-
-
-
     @GetMapping("/wish/{id}")
     public RedirectView followUser(Principal p,@PathVariable Long id){
         ApplicationUser getUser=applicationUserRepository.findByUsername(p.getName());
@@ -217,7 +218,7 @@ return new RedirectView("/singleProduct/"+id);
         Products addProduts=productsRepository.findById(id).get();
         getUser.addUserToWishlist(addProduts);
         applicationUserRepository.save(getUser);
-        return new RedirectView("/wishlist");
+        return new RedirectView("/product");
     }
 
 
@@ -227,7 +228,7 @@ return new RedirectView("/singleProduct/"+id);
         Products removeList=productsRepository.findById(id).get();
         getUser.removeUserFromWishlist(removeList);
         applicationUserRepository.save(getUser);
-        return new RedirectView("/wishlist");
+       return new RedirectView("/wishlist");
     }
 
 
@@ -263,7 +264,12 @@ return new RedirectView("/singleProduct/"+id);
     public String getMyProducts(Model m,Principal p){
         m.addAttribute("UserInfo", applicationUserRepository.findById(applicationUserRepository.findByUsername(p.getName()).getId()).get());
         m.addAttribute("products",applicationUserRepository.findByUsername(p.getName()).getProducts());
-        return "myProducts.html";
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication == null || AnonymousAuthenticationToken.class.isAssignableFrom(authentication.getClass()))
+            return "login.html";
+        else
+            return "myProducts.html";
+
     }
 
     @GetMapping("/myProducts/{id}")

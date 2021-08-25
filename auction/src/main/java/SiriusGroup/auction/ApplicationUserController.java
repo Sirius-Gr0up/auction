@@ -85,6 +85,7 @@ public class ApplicationUserController {
 //         String uploadDir = "/Users/Khalil/ASAC/auction/auction/src/main/resources/static/img" ;
 //            String uploadDir = "/Users/dawoodabuzahra/401/auction/auction/src/main/resources/static/img" ;
 //                    String uploadDir = "/Users/user/LTUC/auction/auction/src/main/resources/static/img" ;
+//                    String uploadDir = "/Users/user/LTUC/auction/auction/src/main/resources/static/img" ;
 
             String url = FileUploadUtil.saveFile(uploadDir, fileName, imageUrl);
             ApplicationUser newUser = new ApplicationUser(username, bCryptPasswordEncoder.encode(password), firstName, lastName, dateOfBirth, bio, url);
