@@ -101,7 +101,7 @@
           <div class="row">
             <div class="col mb-3">
               <label for="username" class="form-label">Email</label>
-              <input type="email" name="username" class="form-control" id="username" aria-describedby="emailHelp">
+              <input type="email" name="username" class="form-control"  th:value="${UserInfo.getUsername()}" id="username" aria-describedby="emailHelp" disabled>
             </div>
             <div class="col mb-3">
               <label for="password" class="form-label">Password</label>
@@ -110,21 +110,21 @@
           </div>
           <div class="row">
             <div class="col mb-3">
-              <label for="firstName" class="form-label">firstName</label>
+              <label for="firstName" class="form-label">First Name</label>
               <input type="text" name="firstName" class="form-control"  th:value="${UserInfo.firstName}" id="firstName" aria-describedby="emailHelp">
             </div>
             <div class="col mb-3">
-              <label for="lastName" class="form-label">lastName</label>
+              <label for="lastName" class="form-label">last Name</label>
               <input type="text" name="lastName" class="form-control" th:value="${UserInfo.lastName}" id="lastName" aria-describedby="emailHelp">
             </div>
           </div>
           <div class="row">
             <div class="col mb-3">
-              <label for="dateOfBirth" class="form-label">dateOfBirth</label>
+              <label for="dateOfBirth" class="form-label">Date of Birth</label>
               <input type="date" name="dateOfBirth" class="form-control" id="dateOfBirth" th:value="${UserInfo.dateOfBirth}" aria-describedby="emailHelp">
             </div>
             <div class="col mb-3">
-              <label for="imageUrl" class="form-label">imageUrl</label>
+              <label for="imageUrl" class="form-label">Upload a Photo</label>
               <input type="file" name="imageUrl" class="form-control" id="imageUrl" th:value="${UserInfo.imgUrl}" aria-describedby="emailHelp">
             </div>
 
