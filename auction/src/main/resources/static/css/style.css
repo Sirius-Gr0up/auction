@@ -540,6 +540,15 @@ footer .nav-link i{
     background-repeat: no-repeat;
     background-size: cover;
 }
+.background-img.about{
+ height: 70vh;
+ padding-top: 5vh;
+
+}
+.about .all-container{
+margin-top:-50vh !important;
+}
+
 .background-img-product{
     width: 100%;
     height: 70vh;
@@ -707,6 +716,16 @@ footer .nav-link i{
     justify-content: center;
     align-items: center;
 }
+.current-Bid a{
+display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: #000;
+}
+.current-Bid a:hover{
+color:var(--main-color);
+}
 .current-Bid i{
     color: var(--main-color);
 }
@@ -870,11 +889,13 @@ text-align: center;
     padding: 27px 25px;
 }
 .bid-form{
-    margin-top: 1rem;
-    border: 1px solid #aaa;
+
     border-radius: 1rem;
     padding: 5vh 3vh;
 
+}
+.bid-form h1{
+color:var(--main-color);
 }
 .bid-now{
     display: flex;
@@ -919,20 +940,17 @@ text-align: center;
     justify-content: space-around;
     align-items: center;
     padding: 15px 10px;
+    border-bottom: 1px dashed #ddd;
 }
 
-.bid-row:nth-child(odd){
-    background-color: #eee;
-}
-.bid-row:nth-child(even){
-    background-color: #fff;
-}
+
 .greetings{
     width: 100%;
     padding: 15px 10px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    border-bottom: 1px dashed #ddd;
 }
 .greetings .col{
 
@@ -940,8 +958,7 @@ text-align: center;
 /*end single product */
 /*Start AboutUs */
 .au-header{
-    padding-left: 6%;
-    padding-top: 8%;
+  text-align: center;
     font-weight: bolder;
     color: #fff !important;
 }
@@ -952,6 +969,7 @@ text-align: center;
     padding-right: 10%;
     font-weight: bolder;
     font-size: 1.2rem;
+    text-align:center;
 }
 .modal-content{
     padding: 5vh 0;
@@ -959,4 +977,62 @@ text-align: center;
 /*End AboutUs */
 .single-product{
     margin-top: -33vh;
+}
+.carousel-inner img {
+    width: 100%
+}
+
+.carousel-item img {
+    width: 100%;
+    height: 240px !important
+}
+#myCarousel{
+box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+#myCarousel .carousel-indicators {
+    position: static;
+    margin-top: 0px
+}
+
+#myCarousel .carousel-indicators>li {
+    width: 100%;
+}
+
+#myCarousel .carousel-indicators li img {
+    display: block;
+    opacity: 0.5;
+    border:1px solid var(--main-color);
+    height:20vh;
+}
+
+#myCarousel .carousel-indicators li.active img {
+    opacity: 1;
+     border:3px solid var(--main-color);
+}
+
+#myCarousel .carousel-indicators li:hover img {
+    opacity: 0.75;
+}
+.carousel-indicators{
+margin-left:0;
+margin-right:0;
+}
+#myCarousel .img-fluid{
+width:100% !important;
+}
+.right-side.single{
+padding:5vh 3vw;
+ box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+.single h1{
+color:var(--main-color);
+}
+.text {
+   overflow: hidden;
+   text-overflow: ellipsis;
+   display: -webkit-box;
+   -webkit-line-clamp: 3; /* number of lines to show */
+   -webkit-box-orient: vertical;
+   color:#aaa;
+
 }
