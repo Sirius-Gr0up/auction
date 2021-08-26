@@ -82,14 +82,14 @@ public class ApplicationUserController {
 
             String fileName = StringUtils.cleanPath(imageUrl.getOriginalFilename());
 
-                    String uploadDir = "/Users/S4C/auction/auction/src/main/resources/static/img";
+//                    String uploadDir = "/Users/S4C/auction/auction/src/main/resources/static/img";
 //         String uploadDir = "/Users/Khalil/ASAC/auction/auction/src/main/resources/static/img" ;
 //            String uploadDir = "/Users/dawoodabuzahra/401/auction/auction/src/main/resources/static/img" ;
-//                    String uploadDir = "/Users/user/LTUC/auction/auction/src/main/resources/static/img" ;
+                    String uploadDir = "/Users/user/LTUC/auction/auction/src/main/resources/static/img" ;
 //                    String uploadDir = "/Users/user/LTUC/auction/auction/src/main/resources/static/img" ;
 
             //        String uploadDir = "/Users/S4C/auction/auction/src/main/resources/static/img";
-         String uploadDir = "/Users/Khalil/ASAC/auction/auction/src/main/resources/static/img" ;
+//         String uploadDir = "/Users/Khalil/ASAC/auction/auction/src/main/resources/static/img" ;
 //            String uploadDir = "/Users/dawoodabuzahra/401/auction/auction/src/main/resources/static/img" ;
 //                    String uploadDir = "/Users/user/LTUC/auction/auction/src/main/resources/static/img" ;
 
@@ -161,12 +161,12 @@ public class ApplicationUserController {
 
 //        String uploadDir = "/Users/dawoodabuzahra/401/auction/auction/src/main/resources/static/img" ;
 
-        String uploadDir = "/Users/Khalil/ASAC/auction/auction/src/main/resources/static/img" ;
+//        String uploadDir = "/Users/Khalil/ASAC/auction/auction/src/main/resources/static/img" ;
 
-//        String uploadDir = "/Users/user/LTUC/auction/auction/src/main/resources/static/img" ;
+        String uploadDir = "/Users/user/LTUC/auction/auction/src/main/resources/static/img" ;
 
 
-        String uploadDir = "Users/S4C/auction/auction/src/main/resources/static/img" ;
+//        String uploadDir = "Users/S4C/auction/auction/src/main/resources/static/img" ;
 
         try {
             url= FileUploadUtil.saveFile(uploadDir, fileName, imageUrl);
