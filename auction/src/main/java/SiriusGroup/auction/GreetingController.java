@@ -35,25 +35,12 @@ public class GreetingController {
           ApplicationUser user =applicationUserRepository.findByUsername(p.getName());
           Products currentProduct=productsRepository.findById(message.getProductId()).get();
           Greeting g=new Greeting(HtmlUtils.htmlEscape(message.getName())+" JOD" );
-//        List <Greeting>glist=currentProduct.getBiding();
-//        System.out.println("product name =============== "+ g.getBidingProduct().getProductName());
          g.setWinner(user.getFirstName() +' '+ user.getLastName());
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
         Date date = new Date();
         g.setNow(formatter.format(date));
-//        glist.add(g);
-//        currentProduct.setBiding(glist);
-//        currentProduct.addbiding(g);
-//        productsRepository.save(currentProduct);
 
-       //g.setBidingProduct(currentProduct);
-//        greetingRepository.save(g);
-//          if (!g.isParticipants(user)){
-//              g.addParticipants(user);
-//          }
           return g;
-           // return g;
-
     }
 
     @GetMapping("/massage")
