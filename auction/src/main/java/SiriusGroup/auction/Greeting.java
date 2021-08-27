@@ -16,9 +16,6 @@ public class Greeting {
     @ManyToOne
     private Products bidingProduct;
 
-//    private List<ApplicationUser>participants=new ArrayList<ApplicationUser>();
-
-
     public Greeting() {
     }
 
@@ -51,20 +48,6 @@ public class Greeting {
     public void setWinner(String winner) {
         this.winner = winner;
     }
-
-//    public List<ApplicationUser> getParticipants() {
-//        return participants;
-//    }
-
-//    public void setParticipants(List<ApplicationUser> participants) {
-//        this.participants = participants;
-//    }
-//    public boolean isParticipants(ApplicationUser user){
-//        return this.participants.contains(user);
-//    }
-//    public void addParticipants(ApplicationUser user){
-//        this.participants.add(user);
-//    }
 
     public Long getId() {
         return id;

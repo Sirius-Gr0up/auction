@@ -35,13 +35,8 @@ public class ProductController {
     @GetMapping("/product" )
     public String getProduct(Principal p, Model model){
         model.addAttribute("UserInfo",applicationUserRepository.findById(applicationUserRepository.findByUsername(p.getName()).getId()).get());
-//        List<Products> products =  ProductsRepository.findProductById(applicationUserRepository.findById(applicationUserRepository.findByUsername(p.getName()).getId()).get().getId());
         ApplicationUser user = applicationUserRepository.findByUsername(p.getName());
-//        List<Products> products =  ProductsRepository.findProductById((user).getId());
-//        Products products1 =  productsRepository.findAll();
-//        model.addAttribute("user",user);
         model.addAttribute("products", productsRepository.findAll());
-//        model.addAttribute("isWishlist",applicationUserRepository.findByUsername(p.getName()).isWishlist());
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication == null || AnonymousAuthenticationToken.class.isAssignableFrom(authentication.getClass()))
             return "login.html";
@@ -73,9 +68,9 @@ public class ProductController {
 
         String fileName = StringUtils.cleanPath(productImageUrl.getOriginalFilename());
 //        String uploadDir = "/Users/user/LTUC/auction/auction/src/main/resources/static/img" ;
-//        String uploadDir = "/Users/dawoodabuzahra/401/auction/auction/src/main/resources/static/img" ;
+        String uploadDir = "/Users/dawoodabuzahra/401/auction/auction/src/main/resources/static/img" ;
 //        String uploadDir = "/Users/Khalil/ASAC/auction/auction/src/main/resources/static/img";
-        String uploadDir = "Users/S4C/auction/auction/src/main/resources/static/img";
+//        String uploadDir = "Users/S4C/auction/auction/src/main/resources/static/img";
 //        String uploadDir = "/Users/Khalil/ASAC/auction/auction/src/main/resources/static/img";
         String url = FileUploadUtil.saveFile(uploadDir, fileName, productImageUrl);
 
@@ -114,59 +109,6 @@ public class ProductController {
 
     }
 
-
-
-
-    //rawan
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    ////////////////////////////////////////
-
-    //mohammad
     @Transactional
 @PostMapping("/addBid/{id}")
 public RedirectView addBid (@PathVariable Long id,@RequestParam int vol,Principal p){
@@ -185,24 +127,6 @@ public RedirectView addBid (@PathVariable Long id,@RequestParam int vol,Principa
         greetingRepository.save(g);
 return new RedirectView("/singleProduct/"+id);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     @GetMapping ("/wishlist")
@@ -251,16 +175,6 @@ return new RedirectView("/singleProduct/"+id);
         return "by.html";
     }
 
-
-
-
-
-
-
-
-    ////////////////////////////////////////
-
-    //khalil
     @GetMapping("/myProducts")
     public String getMyProducts(Model m,Principal p){
         m.addAttribute("UserInfo", applicationUserRepository.findById(applicationUserRepository.findByUsername(p.getName()).getId()).get());
@@ -280,101 +194,5 @@ return new RedirectView("/singleProduct/"+id);
         productsRepository.deleteById(p1.getId());
         return new RedirectView("/myProducts");
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    ////////////////////////////////////////
-
-    //dawood
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    ////////////////////////////////////////
-
 
 }

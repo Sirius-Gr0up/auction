@@ -18,10 +18,6 @@ public class Products {
     private Long id;
     private String dis;
 
-//    @CreationTimestamp
-//    @Temporal(TemporalType.TIMESTAMP)
-//    @Column(name = "createdAt", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
-//    private Date createdAt;
 
     private String productName ;
     private String productImageUrl;

@@ -74,9 +74,7 @@ public class ApplicationUserController {
 
     @PostMapping("/signup")
     public RedirectView signUp(@RequestParam(value = "username") String username, @RequestParam(value = "password") String password, @RequestParam(value = "firstName") String firstName, @RequestParam(value = "lastName") String lastName, @RequestParam(value = "dateOfBirth") String dateOfBirth, @RequestParam(value = "bio") String bio, @RequestParam(required = true, value = "imageUrl") MultipartFile imageUrl) throws IOException {
-//        ApplicationUser newUser = new ApplicationUser(username,bCryptPasswordEncoder.encode(password),firstName,lastName,dateOfBirth,bio,imageUrl);
-//        applicationUserRepository.save(newUser);
-        //Ensure that user registration also logs users into your app automatically.
+
         if(!imageUrl.isEmpty())
         {
 
@@ -101,25 +99,15 @@ public class ApplicationUserController {
             Authentication authentication = new UsernamePasswordAuthenticationToken(newUser, null, new ArrayList<>());
             SecurityContextHolder.getContext().setAuthentication(authentication);
 
-
-
         }
         else
         {
 
             ApplicationUser newUser = new ApplicationUser(username, bCryptPasswordEncoder.encode(password), firstName, lastName, dateOfBirth, bio, "/img/avatar.png");
             applicationUserRepository.save(newUser);
-
-
             Authentication authentication = new UsernamePasswordAuthenticationToken(newUser, null, new ArrayList<>());
             SecurityContextHolder.getContext().setAuthentication(authentication);
-
-
         }
-
-
-
-
         return new RedirectView("/");
     }
 
@@ -128,9 +116,7 @@ public class ApplicationUserController {
 
     public String getUserProfile(Principal p, Model model){
         try{
-
             model.addAttribute("UserInfo",applicationUserRepository.findById(applicationUserRepository.findByUsername(p.getName()).getId()).get());
-
             System.out.println(applicationUserRepository.findById(applicationUserRepository.findByUsername(p.getName()).getId()).get());
         } catch (NullPointerException e) {
             model.addAttribute("userInfoe", "");
@@ -143,13 +129,6 @@ public class ApplicationUserController {
             return "profile.html";
     }
 
-//
-//    @GetMapping("/product" )
-//    public String getProduct(Principal p, Model model){
-//        model.addAttribute("UserInfo",applicationUserRepository.findById(applicationUserRepository.findByUsername(p.getName()).getId()).get());
-//
-//        return "product.html";
-//    }
 
     @PostMapping("/editUser")
     public RedirectView editUser(Principal p,@RequestParam(value="username") String username, @RequestParam(value="firstName") String firstName, @RequestParam(value="lastName") String lastName, @RequestParam(value="dateOfBirth") String dateOfBirth, @RequestParam(value="bio") String bio, @RequestParam(required=true,value="imageUrl") MultipartFile imageUrl) {
@@ -159,14 +138,14 @@ public class ApplicationUserController {
 
 
 
-//        String uploadDir = "/Users/dawoodabuzahra/401/auction/auction/src/main/resources/static/img" ;
+        String uploadDir = "/Users/dawoodabuzahra/401/auction/auction/src/main/resources/static/img" ;
 
 //        String uploadDir = "/Users/Khalil/ASAC/auction/auction/src/main/resources/static/img" ;
 
 //        String uploadDir = "/Users/user/LTUC/auction/auction/src/main/resources/static/img" ;
 
 
-        String uploadDir = "Users/S4C/auction/auction/src/main/resources/static/img" ;
+//        String uploadDir = "Users/S4C/auction/auction/src/main/resources/static/img" ;
 
         try {
             url= FileUploadUtil.saveFile(uploadDir, fileName, imageUrl);
@@ -184,109 +163,6 @@ public class ApplicationUserController {
         return new RedirectView("/profile");
 
     }
-
-
-    //rawan
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    ////////////////////////////////////////
-
-
-    //mohammad
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    ////////////////////////////////////////
-
-
-
 
 }
 
