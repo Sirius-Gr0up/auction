@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/normalize.css}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <link th:href="@{/css/style.css}" rel="stylesheet" />
+    <script src="https://kit.fontawesome.com/9e5d1913ca.js" crossorigin="anonymous"></script>
+    <title>Document</title>
+</head>
+<body>
+<!-- start navbar -->
+<nav th:replace="fragments/navbar :: navbar"></nav>
+<!-- end navbar -->
+<section class="login-page">
+    <div class="container h-100">
+        <div class="row h-100">
+            <div class="col">
+                <div class="login-text">
+                    <h1>Welcome back</h1>
+                    <h1>Login now</h1>
+                </div>
+            </div>
+            <div class="col">
+                <div class="loginbox">
+                   
+                        <form class="form-area" action="/perform_login" method="post">
+                            <div class="form-header pb-3">
+                                <h1>Login</h1>
+                            </div>
+                            <div class="mb-3">
+                                <label for="username" class="form-label">Email</label>
+                                <input type="text" name="username" class="form-control" id="username" aria-describedby="emailHelp">
+                            </div>
+        
+                            <div class="mb-3">
+                                <label for="password" class="form-label">Password</label>
+                                <input name="password" type="password" class="form-control" id="password">
+                            </div>
+        
+                            <button type="submit" class="btn  btn-outline-info my-btn mt-2">login</button>
+        
+                        </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+<script th:src="@{/js.js}"></script>
+
+</body>
+</html>
